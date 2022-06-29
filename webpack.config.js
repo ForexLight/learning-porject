@@ -2,10 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-let isDevelopment = true
-
+let mode = 'development'
+if (process.env.NODE_ENV === 'production') {
+    mode = 'production'
+}
 module.exports = {
     entry: "./src/index.tsx",
+    mode: mode,
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "bundle.js",
