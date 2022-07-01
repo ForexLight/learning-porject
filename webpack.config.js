@@ -2,7 +2,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
+const CompressionPlugin = require('compression-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default
@@ -26,6 +27,7 @@ const plugins = [
   new ESLintPlugin({
     context: './src',
   }),
+  new CompressionPlugin(),
 ]
 
 module.exports = {
@@ -33,10 +35,12 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].[fullhash:8].bundle.js',
+    filename: '[name].[fullhash:8].bundle.js',
     assetModuleFilename: 'images/[hash][ext][query]',
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -52,12 +56,28 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset',
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          publicPath: '../images/',
+          esModule: false,
+        },
         parser: {
           dataUrlCondition: {
             maxSize: 30 * 1024,
           },
+        },
+      },
+      {
+        test: /\.(woff)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'fonts/',
+          publicPath: 'fonts/',
+          esModule: false,
         },
       },
     ],
