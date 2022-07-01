@@ -16,8 +16,7 @@ export interface HelloWorldProps {
 export function App({ userName, lang }: HelloWorldProps) {
   return (
     <Title>
-      Hi {userName} from React! <span>Welcome</span> to {lang}!
-      <img src={image} alt='turtles' />
+      Hi {userName} from React! Welcome to {lang}!
     </Title>
   )
 }
