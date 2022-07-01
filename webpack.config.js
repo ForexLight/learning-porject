@@ -1,45 +1,71 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default
+
+const styledComponentsTransformer = createStyledComponentsTransformer()
+
+let target = 'web'
 
 let mode = 'development'
 if (process.env.NODE_ENV === 'production') {
-    mode = 'production'
+  mode = 'production'
+  target = 'browserslist'
 }
-module.exports = {
-    entry: "./src/index.tsx",
-    mode: mode,
-    output: {
-        path: path.resolve(__dirname, "build"),
-        filename: "bundle.js",
-    },
-    resolve: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx']
-    },
-    target: "web",
-    mode: "development",
-    module: {
-        rules: [
-            {
-                test: /\.(ts|tsx)$/,
-                loader: "ts-loader",
-            },
-            {
-                test: /\.js$/,
-                loader: "source-map-loader",
-            },
-            {
-                test: /\.(s(a|c)ss)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            }
-        ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({template: path.resolve(__dirname, "src", "index.html")}),
-        new MiniCssExtractPlugin()
-    ],
 
-    devServer: {
-        hot: true
-    },
-};
+const plugins = [
+  new CleanWebpackPlugin(),
+  new MiniCssExtractPlugin(),
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+  }),
+  new ESLintPlugin({
+    context: './src',
+  }),
+]
+
+module.exports = {
+  mode,
+  entry: './src/index.tsx',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[hash][ext][query]',
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx|jsx)$/,
+        loader: 'ts-loader',
+        options: {
+          getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+        },
+      },
+      {
+        test: /\.(s(a|c)ss)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 30 * 1024,
+          },
+        },
+      },
+    ],
+  },
+  plugins,
+  target,
+  devtool: 'source-map',
+  devServer: {
+    hot: true,
+  },
+}
