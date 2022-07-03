@@ -17,6 +17,7 @@ export function App({ userName, lang }: HelloWorldProps) {
   return (
     <Title>
       Hi {userName} from React! Welcome to {lang}!
+      <img src={image} alt='meme' />
     </Title>
   )
 }
