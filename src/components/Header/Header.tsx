@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { Burger } from './Burger'
+import Burger from './Burger'
 import Menu from './Menu'
 
 const HeaderStyle = styled.header`
