@@ -103,7 +103,7 @@
     "jsx": "react"
   },
   "include": [
-    "src",
+    "src/*",
     "../../AppData/Local/JetBrains/WebStorm2021.3/javascript/typings/jest/28.1.2/node_modules/@types/jest/index.d.ts"
   ]
 }
