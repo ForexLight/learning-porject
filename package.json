@@ -5,7 +5,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "clean": "rm -rf ./build",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
     "prettier": "prettier --write ./src --config ./.prettierrc",
     "test": "jest",
     "prepublish": "npm-run-all --parallel lint test"

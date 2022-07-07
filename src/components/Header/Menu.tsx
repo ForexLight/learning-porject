@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 import React from 'react'
 
+type menuTypes = {
+  open: boolean
+}
 const StyledMenu = styled.nav`
   background: #00ffb1;
-  display: ${({ open }: { open: boolean }) => (open ? 'block' : 'none')};
-  opacity: ${({ open }: { open: boolean }) => (open ? '1' : '0')};
+  display: ${({ open }: menuTypes) => (open ? 'block' : 'none')};
+  opacity: ${({ open }: menuTypes) => (open ? '1' : '0')};
   height: 100vh;
   position: fixed;
   width: 300px;
@@ -22,14 +25,14 @@ const StyledMenu = styled.nav`
   }
 `
 
-export const Menu = ({ open }: { open: boolean }) => {
-  return (
-    <StyledMenu open={open}>
-      <div>
-        <a href='#'>Link 1</a>
-        <a href='#'>Link 2</a>
-        <a href='#'>Link 3</a>
-      </div>
-    </StyledMenu>
-  )
-}
+const Menu: React.FC<menuTypes> = ({ open }) => (
+  <StyledMenu open={open}>
+    <div>
+      <a href='/'>Link 1</a>
+      <a href='/'>Link 2</a>
+      <a href='/'>Link 3</a>
+    </div>
+  </StyledMenu>
+)
+
+export default Menu

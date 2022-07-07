@@ -50,12 +50,12 @@ const StyledBurger = styled.button`
   }
 `
 
-export const Burger = ({ open, setOpen }: burgerTypes) => {
-  return (
-    <StyledBurger open={open} onClick={() => setOpen(!open)}>
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
-  )
-}
+const Burger: React.FC<burgerTypes> = ({ open, setOpen }) => (
+  <StyledBurger open={open} onClick={() => setOpen(!open)}>
+    <div />
+    <div />
+    <div />
+  </StyledBurger>
+)
+
+export default Burger

@@ -21,14 +21,14 @@ export interface HelloWorldProps {
   lang: string
 }
 
-export function App({ userName, lang }: HelloWorldProps) {
-  return (
-    <AppWrapper>
-      <Header />
-      <section>
-        Hi {userName} from React! Welcome to {lang}!
-        <img src={image} alt='meme' />
-      </section>
-    </AppWrapper>
-  )
-}
+const App: React.FC<HelloWorldProps> = ({ userName, lang }) => (
+  <AppWrapper>
+    <Header />
+    <section>
+      Hi {userName} from React! Welcome to {lang}!
+      <img src={image} alt='meme' />
+    </section>
+  </AppWrapper>
+)
+
+export default App
