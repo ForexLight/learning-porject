@@ -24,12 +24,11 @@ export interface HelloWorldProps {
 export function App({ userName, lang }: HelloWorldProps) {
   return (
     <AppWrapper>
-        <Header />
-        <section>
-            Hi {userName} from React! Welcome to {lang}!
-            <img src={image} alt='meme' />
-        </section>
-
+      <Header />
+      <section>
+        Hi {userName} from React! Welcome to {lang}!
+        <img src={image} alt='meme' />
+      </section>
     </AppWrapper>
   )
 }
