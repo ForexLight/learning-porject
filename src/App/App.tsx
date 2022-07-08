@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 import image from '../images/meme.jpg'
 
 const AppWrapper = styled.main`
@@ -10,6 +11,7 @@ const AppWrapper = styled.main`
   color: red;
   overflow: hidden;
   max-width: 100%;
+
   section {
     display: flex;
     flex-direction: column;
@@ -28,6 +30,7 @@ const App: React.FC<HelloWorldProps> = ({ userName, lang }) => (
       Hi {userName} from React! Welcome to {lang}!
       <img src={image} alt='meme' />
     </section>
+    <Footer />
   </AppWrapper>
 )
 
