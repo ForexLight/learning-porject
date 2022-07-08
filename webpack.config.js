@@ -35,6 +35,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     chunkFilename: '[name].[fullhash:8].bundle.js',
     filename: '[name].[fullhash:8].bundle.js',
     assetModuleFilename: 'images/[hash][ext][query]',
@@ -86,6 +87,7 @@ module.exports = {
   target,
   devtool: 'source-map',
   devServer: {
+    historyApiFallback: true,
     hot: true,
   },
 }

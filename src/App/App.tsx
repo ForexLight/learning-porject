@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
+
 import styled from 'styled-components'
+import Login from '../components/Login/Login'
+import Main from '../components/Main/Main'
 
-import image from '../images/meme.jpg'
-
-const Title = styled.h1`
+const AppWrapper = styled.main`
   font-size: 1.5em;
-  text-align: center;
   color: red;
 `
 
-export interface HelloWorldProps {
-  userName: string
-  lang: string
-}
-export function App({ userName, lang }: HelloWorldProps) {
+const App: React.FC = () => {
+  const [isAuth, setIsAuth] = useState<boolean>(false)
   return (
-    <Title>
-      Hi {userName} from React! Welcome to {lang}!
-      <img src={image} alt='meme' />
-    </Title>
+    <Router>
+      <AppWrapper>
+        <h1>Hello world</h1>
+        <Routes>
+          <Route
+            index
+            element={isAuth ? <Navigate replace to='/main' /> : <Navigate replace to='/login' />}
+          />
+          <Route path='login' element={<Login />} />
+          <Route path='main' element={<Main />} />
+        </Routes>
+      </AppWrapper>
+    </Router>
   )
 }
+
+export default App
