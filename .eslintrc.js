@@ -48,5 +48,12 @@ module.exports = {
     quotes: ['error', 'single'],
     'no-duplicate-imports': 'error',
     '@typescript-eslint/no-var-requires': 'off',
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
 }
