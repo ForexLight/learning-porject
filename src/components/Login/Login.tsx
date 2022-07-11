@@ -56,7 +56,7 @@ const Login: React.FC = () => {
   const loginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, email: e.target.value })
   }
-  const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const passHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, pass: e.target.value })
   }
   const sendData = () => {
@@ -65,8 +65,10 @@ const Login: React.FC = () => {
       setTimeout(() => {
         setVisibleError(false)
       }, 1500)
-      throw new Error('error in date')
+      console.warn('error in date')
+      return
     }
+
     setVisibleSuccess(true)
     setTimeout(() => {
       setVisibleError(false)
@@ -82,9 +84,15 @@ const Login: React.FC = () => {
         <span>Login page</span>
       </div>
       <div className='login-form'>
-        <Input label='Email' onChange={loginHandler} isError={visibleError} />
-        <Input label='Password' onChange={passwordHandler} isError={visibleError} />
-        <Button onClick={sendData} size='100px' text='Login' type='regular' />
+        <Input label='Email' aria-label='Email' onChange={loginHandler} isError={visibleError} />
+        <Input label='Password' aria-label='Pass' onChange={passHandler} isError={visibleError} />
+        <Button
+          onClick={sendData}
+          size='200px'
+          text='Login'
+          type='regular'
+          data-testid='login-btn'
+        />
         <span>
           If u don&rsquo;t have an account u can create it
           <b>

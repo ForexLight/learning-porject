@@ -6,6 +6,8 @@ interface ComponentProps {
   onClick: () => void
   type: string
   size: string
+
+  [x: string]: any
 }
 
 interface StyledProps {
@@ -39,41 +41,41 @@ const SuccessStyledButton = styled(StyledButton)``
 
 const WarningStyledButton = styled(StyledButton)``
 
-const Button: React.FC<Props> = ({ text, onClick, type, size = '100px' }) => {
+const Button: React.FC<Props> = ({ text, onClick, type, size, ...props }) => {
   switch (type) {
     case 'regular':
       return (
-        <RegularStyledButton onClick={onClick} size={size}>
+        <RegularStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </RegularStyledButton>
       )
     case 'secondary':
       return (
-        <SecondaryStyledButton onClick={onClick} size={size}>
+        <SecondaryStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </SecondaryStyledButton>
       )
     case 'info':
       return (
-        <InfoStyledButton onClick={onClick} size={size}>
+        <InfoStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </InfoStyledButton>
       )
     case 'success':
       return (
-        <SuccessStyledButton onClick={onClick} size={size}>
+        <SuccessStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </SuccessStyledButton>
       )
     case 'Warning':
       return (
-        <WarningStyledButton onClick={onClick} size={size}>
+        <WarningStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </WarningStyledButton>
       )
     default:
       return (
-        <StyledButton onClick={onClick} size={size}>
+        <StyledButton onClick={onClick} size={size} {...props}>
           {text}
         </StyledButton>
       )

@@ -26,14 +26,16 @@ interface OwnProps {
   label: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   isError: boolean
+
+  [x: string]: any
 }
 
 type Props = OwnProps
 
-const Input: React.FC<Props> = ({ label, onChange, isError }) => (
+const Input: React.FC<Props> = ({ label, onChange, isError, ...props }) => (
   <InputContainer isError={isError}>
     <label htmlFor='input'>{label}</label>
-    <input id='input' type='text' required onChange={onChange} />
+    <input id='input' type='text' required onChange={onChange} {...props} />
   </InputContainer>
 )
 
