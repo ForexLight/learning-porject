@@ -22,10 +22,10 @@ const App: React.FC = () => {
         <Routes>
           <Route
             index
-            element={isAuth ? <Navigate replace to='/main' /> : <Navigate replace to='/login' />}
+            element={isAuth ? <Navigate replace to='/' /> : <Navigate replace to='/login' />}
           />
           <Route path='login' element={<Login />} />
-          <Route path='main' element={<Main />} />
+          <Route path='' element={<Main />} />
         </Routes>
       </AppWrapper>
     </Router>
