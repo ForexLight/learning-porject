@@ -35,6 +35,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     chunkFilename: '[name].[fullhash:8].bundle.js',
     filename: '[name].[fullhash:8].bundle.js',
     assetModuleFilename: 'images/[hash][ext][query]',
@@ -52,7 +53,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(s(a|c)ss)$/,
+        test: /\.(css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
@@ -86,6 +87,7 @@ module.exports = {
   target,
   devtool: 'source-map',
   devServer: {
+    historyApiFallback: true,
     hot: true,
   },
 }
