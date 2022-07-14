@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import SvgLoader from '../../../helpers/SvgLoader'
 
 import userImg from '../../../images/user_logo.png'
+import greetingByDayTime from '../../../helpers/greetingByDayTime'
 
 const GreetingStyled = styled.section`
   display: flex;
@@ -23,6 +24,7 @@ const GreetingStyled = styled.section`
     justify-content: center;
     img {
       width: 50px;
+      align-self: flex-start;
     }
   }
   .circle {
@@ -38,16 +40,32 @@ const GreetingStyled = styled.section`
     }
   }
 `
-const Greeting: React.FC = () => (
-  <GreetingStyled>
-    <div>
-      <img src={userImg} alt='user logo' />
-      <h2>User Name</h2>
-    </div>
-    <div className='circle'>
-      <SvgLoader id='notification' />
-    </div>
-  </GreetingStyled>
-)
+type NotificationContainerType = {
+  visible: boolean
+}
+
+const NotificationContainer = styled.div<NotificationContainerType>`
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+`
+
+const Greeting: React.FC = () => {
+  const [visibleNotification, setVisibleNotification] = useState(false)
+  return (
+    <>
+      <GreetingStyled>
+        <div>
+          <img src={userImg} alt='user logo' />
+          <h2>Good {greetingByDayTime(new Date())} Vlad</h2>
+        </div>
+        <div className='circle' onClick={() => setVisibleNotification(!visibleNotification)}>
+          <SvgLoader id='notification' />
+        </div>
+      </GreetingStyled>
+      <NotificationContainer visible={visibleNotification}>
+        There is no notification
+      </NotificationContainer>
+    </>
+  )
+}
 
 export default Greeting

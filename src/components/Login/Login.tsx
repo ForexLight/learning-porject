@@ -87,7 +87,6 @@ const Login: React.FC<Props> = ({ setVisibleNav }) => {
       {visibleSuccess ? <Notifications text='All ok, redirecting...' status='success' /> : null}
       <div className='logo'>
         <img src={logo} alt='logo' />
-        <span>Login page</span>
       </div>
       <div className='login-form'>
         <Input label='Email' aria-label='Email' onChange={loginHandler} isError={visibleError} />

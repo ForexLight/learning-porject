@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 import Greeting from './Components/Greeting'
 
-const StyledMain = styled.div``
+const StyledMain = styled.div`
+  margin: 5px;
+`
 
 const Main: React.FC = () => (
   <StyledMain>
