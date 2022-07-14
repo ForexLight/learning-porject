@@ -11,6 +11,11 @@ type LoginDataTypes = {
   email: string
   pass: string
 }
+interface OwnProps {
+  setVisibleNav: any
+}
+
+type Props = OwnProps
 
 const LoginWrapper = styled.section`
   display: flex;
@@ -46,7 +51,7 @@ const LoginWrapper = styled.section`
   }
 `
 
-const Login: React.FC = () => {
+const Login: React.FC<Props> = ({ setVisibleNav }) => {
   const [data, setData] = useState<LoginDataTypes>({ email: '', pass: '' })
   const [visibleError, setVisibleError] = useState<boolean>(false)
   const [visibleSuccess, setVisibleSuccess] = useState<boolean>(false)
@@ -73,6 +78,7 @@ const Login: React.FC = () => {
     setTimeout(() => {
       setVisibleError(false)
       navigate('/main', { replace: true })
+      setVisibleNav(true)
     }, 1000)
   }
   return (

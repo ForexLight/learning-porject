@@ -13,7 +13,7 @@ afterEach(cleanup)
 const setup = () => {
   const utils = render(
     <BrowserRouter>
-      <Login />
+      <Login setVisibleNav={() => null} />
       <Main />
     </BrowserRouter>,
   )

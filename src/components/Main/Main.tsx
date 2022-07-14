@@ -1,7 +1,8 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const Main: React.FC = () => {
-  return <div>logged in</div>
-}
+const StyledMain = styled.div``
+
+const Main: React.FC = () => <StyledMain>logged in</StyledMain>
 
 export default Main
