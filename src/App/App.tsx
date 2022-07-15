@@ -19,7 +19,7 @@ const AppWrapper = styled.main`
 `
 
 const App: React.FC = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [isAuth, setIsAuth] = useState<boolean>(true)
   return (
     <Router>
       <AppWrapper>
@@ -27,7 +27,7 @@ const App: React.FC = () => {
         <Routes>
           <Route
             index
-            element={isAuth ? <Navigate replace to='/main' /> : <Navigate replace to='/login' />}
+            element={isAuth ? <Navigate replace to='main' /> : <Navigate replace to='login' />}
           />
           <Route path='login' element={<Login setVisibleNav={setIsAuth} />} />
           <Route path='main' element={<Main />} />

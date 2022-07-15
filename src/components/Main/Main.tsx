@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledMain = styled.div``
+import Greeting from './Components/Greeting'
 
-const Main: React.FC = () => <StyledMain>logged in</StyledMain>
+const StyledMain = styled.div`
+  margin: 5px;
+`
+
+const Main: React.FC = () => (
+  <StyledMain>
+    <Greeting />
+  </StyledMain>
+)
 
 export default Main

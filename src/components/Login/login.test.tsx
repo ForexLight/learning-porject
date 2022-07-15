@@ -50,6 +50,6 @@ test('should work with all input data', () => {
   fireEvent.change(inputPass, { target: { value: '123' } })
   const btn = getByTestId('login-btn')
   fireEvent.click(btn)
-  const linkElement = getByText(/logged in/i)
+  const linkElement = getByText(/Vlad/i)
   expect(linkElement).toBeInTheDocument()
 })
