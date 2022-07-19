@@ -40,7 +40,7 @@ const NavBarStyled = styled.nav<StyledProps>`
       }
     }
   }
-  @media (min-width: 512px) {
+  @media (min-width: 540px) {
     position: relative;
     display: flex;
     width: 100%;

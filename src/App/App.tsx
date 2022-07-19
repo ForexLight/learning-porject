@@ -13,7 +13,7 @@ import Calendar from '../components/Calendar/Calendar'
 const AppWrapper = styled.main`
   overflow: hidden;
   max-width: 100vw;
-  max-height: 100vh;
+  height: 100vh;
   font-size: 1.5em;
   color: red;
 `

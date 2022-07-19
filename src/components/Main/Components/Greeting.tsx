@@ -1,56 +1,113 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-
-import SvgLoader from '../../../helpers/SvgLoader'
 
 import userImg from '../../../images/user_logo.png'
 import greetingByDayTime from '../../../helpers/greetingByDayTime'
 
 const GreetingStyled = styled.section`
+  margin-top: 10px;
   display: flex;
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   background-color: green;
-  justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
+  padding: 20px;
   border-radius: 20px;
-  div {
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    img {
-      width: 50px;
-      align-self: flex-start;
-    }
-  }
-  @media (min-width: 512px) {
-    width: 50%;
+  font-size: 16px;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    width: 100px;
   }
   @media (min-width: 766px) {
-    width: 35%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
 `
-type NotificationContainerType = {
-  visible: boolean
-}
+const AdditionalInformation = styled.div`
+  font-size: 14px;
+  display: flex;
+  background-color: greenyellow;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  ul {
+    padding: 0 10px;
+    list-style-type: none;
+    margin: 0;
+    li {
+      padding: 5px 0;
+      font-weight: bold;
+    }
+    li > span {
+      font-weight: normal;
+      color: #ff6461;
+    }
+  }
 
-const NotificationContainer = styled.div<NotificationContainerType>`
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  @media (min-width: 542px) {
+    width: 100%;
+  }
+  @media (min-width: 766px) {
+    height: 150px;
+    font-size: 18px;
+    width: 60%;
+  }
+  @media (min-width: 1200px) {
+    width: 45%;
+  }
 `
-
-const Greeting: React.FC = () => {
-  const [visibleNotification, setVisibleNotification] = useState(false)
-  return (
-    <GreetingStyled>
-      <div>
-        <img src={userImg} alt='user logo' />
-        <h2>Good {greetingByDayTime(new Date())} Vlad</h2>
-      </div>
-    </GreetingStyled>
-  )
-}
+const Separator = styled.div`
+  width: 5px;
+  height: 70px;
+  align-self: center;
+  background-color: darkgray;
+  justify-self: center;
+`
+const MainInformation = styled.div`
+  padding: 10px;
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+`
+const Greeting: React.FC = () => (
+  <GreetingStyled>
+    <MainInformation>
+      <img src={userImg} alt='user logo' />
+      <h2>
+        Good {greetingByDayTime(new Date())} <br /> Patient Vlad
+      </h2>
+    </MainInformation>
+    <AdditionalInformation>
+      <ul>
+        <li>
+          <span>Sex:</span> male
+        </li>
+        <li>
+          <span>Age:</span> 20 y.o.
+        </li>
+        <li>
+          <span>Blood type:</span> AB+
+        </li>
+      </ul>
+      <Separator />
+      <ul>
+        <li>
+          <span>Contract till:</span> 10.10.2025
+        </li>
+        <li>
+          <span>Problem:</span> legs
+        </li>
+        <li>
+          <span>Medical id:</span> 123123
+        </li>
+      </ul>
+    </AdditionalInformation>
+  </GreetingStyled>
+)
 
 export default Greeting
