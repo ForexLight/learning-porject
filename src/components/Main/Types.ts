@@ -10,3 +10,7 @@ export interface NotificationProps {
 export type NotificationContainerType = {
   visible: boolean
 }
+export type PhysiqueType = {
+  height: number
+  weight: number
+}

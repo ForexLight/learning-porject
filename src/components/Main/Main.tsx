@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Greeting from './Components/Greeting'
 import Notification from './Components/Notification'
-import data from '../../data.js'
+import data from '../../data'
 import { NotificationType } from './Types'
 
 const StyledMain = styled.div`
@@ -13,7 +13,6 @@ const StyledMain = styled.div`
 const Main: React.FC = () => {
   const [notifications, setNotifications] = useState<NotificationType[]>(data.notifications)
   const deleteNotification = (id: number) => {
-    console.log(1)
     const newData = notifications.filter((i) => Number(i.id) !== id)
     setNotifications(newData)
   }

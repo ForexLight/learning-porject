@@ -25,7 +25,4 @@ const notifications = [
     date: '10/10/1010',
   },
 ]
-const data = {
-  notifications,
-}
-export default data
+export default { notifications }

@@ -36,7 +36,7 @@ const AdditionalInformation = styled.div`
   height: 100%;
   padding: 10px;
   ul {
-    padding: 0 5px;
+    padding: 0 10px;
     list-style-type: none;
     margin: 0;
     li {
