@@ -5,6 +5,7 @@ import Greeting from './Components/Greeting'
 import Notification from './Components/Notification'
 import data from '../../data'
 import { NotificationType } from './Types'
+import BmiCalculator from './Components/BmiCalculator'
 
 const StyledMain = styled.div`
   margin: 5px;
@@ -20,6 +21,7 @@ const Main: React.FC = () => {
     <StyledMain>
       <Notification notifications={notifications} deleteNotification={deleteNotification} />
       <Greeting />
+      <BmiCalculator />
     </StyledMain>
   )
 }
