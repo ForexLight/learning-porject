@@ -10,6 +10,7 @@ const NavBarStyled = styled.nav<StyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
   ul {
     width: 100%;
     padding: 0;

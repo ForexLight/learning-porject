@@ -11,11 +11,13 @@ import Doctors from '../components/Dotors/Doctors'
 import Calendar from '../components/Calendar/Calendar'
 
 const AppWrapper = styled.main`
-  overflow: hidden;
   max-width: 100vw;
   height: 100vh;
   font-size: 1.5em;
   color: red;
+  @media (min-width: 766px) {
+    overflow: hidden;
+  }
 `
 
 const App: React.FC = () => {

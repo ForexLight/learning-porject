@@ -14,3 +14,8 @@ export type PhysiqueType = {
   height: number
   weight: number
 }
+export type CertificatesType = {
+  name: string
+  result: string
+  date: string
+}
