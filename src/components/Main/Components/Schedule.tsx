@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-import data from '../../../data'
-import { ScheduleType } from '../Types'
+import { useAppDispatch, useAppSelector } from '../../../hooks'
+import { RootState } from '../../../store/store'
 
 const ScheduleContainer = styled.section`
   background-color: gold;
@@ -34,7 +34,8 @@ const ScheduleItem = styled.div`
 `
 
 const Schedule: React.FC = () => {
-  const [items] = useState<ScheduleType[]>(data.scheduleItems)
+  const items = useAppSelector((state: RootState) => state.schedule)
+  const dispatcher = useAppDispatch()
   const scheduleItems = items.map((i) => (
     <ScheduleItem key={i.id}>
       <span>{i.info}</span>
