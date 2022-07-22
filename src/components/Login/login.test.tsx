@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cleanup, fireEvent, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import store from '../../store/store'
+import { store } from '../../store/store'
 import Login from './Login'
 import Main from '../Main/Main'
 
