@@ -12,11 +12,9 @@ import Calendar from '../components/Calendar/Calendar'
 
 const AppWrapper = styled.main`
   max-width: 100vw;
-  height: 100vh;
   font-size: 1.5em;
   color: red;
   @media (min-width: 766px) {
-    overflow: hidden;
   }
 `
 

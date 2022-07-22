@@ -7,9 +7,38 @@ import data from '../../data'
 import { NotificationType } from './Types'
 import BmiCalculator from './Components/BmiCalculator'
 import Certificates from './Components/Certificates'
+import Schedule from './Components/Schedule'
 
 const StyledMain = styled.div`
-  margin: 5px;
+  padding: 0 5px;
+  @media (min-width: 542px) {
+    height: 100vh;
+    padding: 5px;
+  }
+`
+const AdditionalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 542px) {
+    height: 65%;
+    flex-direction: row;
+    .leftSide {
+      width: 50%;
+    }
+    .rightSide {
+      padding-left: 5px;
+      height: 100%;
+
+      width: 50%;
+      overflow: visible;
+    }
+    margin-top: 20px;
+    padding: 20px;
+  }
+  @media (min-width: 766px) {
+  }
+  @media (min-width: 1200px) {
+  }
 `
 
 const Main: React.FC = () => {
@@ -22,8 +51,15 @@ const Main: React.FC = () => {
     <StyledMain>
       <Notification notifications={notifications} deleteNotification={deleteNotification} />
       <Greeting />
-      <BmiCalculator />
-      <Certificates />
+      <AdditionalContainer>
+        <div className='leftSide'>
+          <BmiCalculator />
+          <Certificates />
+        </div>
+        <div className='rightSide'>
+          <Schedule />
+        </div>
+      </AdditionalContainer>
     </StyledMain>
   )
 }

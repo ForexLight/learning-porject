@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { CertificatesType } from '../Types'
 
 const CertificatesContainer = styled.section`
+  flex: 1;
   background-color: #00ffb3;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 20px;
   @media (min-width: 542px) {
-    width: 50%;
+    height: 65%;
   }
   @media (min-width: 766px) {
   }

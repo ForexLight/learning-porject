@@ -19,3 +19,9 @@ export type CertificatesType = {
   result: string
   date: string
 }
+export type ScheduleType = {
+  id: string
+  info: string
+  place: string
+  date: string
+}

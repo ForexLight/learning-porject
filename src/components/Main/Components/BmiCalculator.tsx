@@ -5,6 +5,7 @@ import { PhysiqueType } from '../Types'
 import getBMI from '../../../helpers/getBmi'
 
 const BmiCalculatorContainer = styled.section`
+  flex: 1;
   margin: 5px;
   border-radius: 20px;
   background-color: #fffe8d;
@@ -12,7 +13,6 @@ const BmiCalculatorContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   font-size: 14px;
   padding: 30px 10px;
   .container {
@@ -22,10 +22,9 @@ const BmiCalculatorContainer = styled.section`
     width: 100%;
   }
   @media (min-width: 542px) {
-    width: 50%;
+    height: 35%;
   }
   @media (min-width: 766px) {
-    height: 200px;
     font-size: 18px;
   }
   @media (min-width: 1200px) {
@@ -36,7 +35,7 @@ const BmiStatus = styled.div`
   justify-content: center;
   align-items: center;
   height: 50px;
-  width: 45%;
+  width: 100%;
   background-color: ${(props) => props.color};
   border-radius: 20px;
   span {
@@ -55,7 +54,7 @@ const BodyStatus = styled.div`
   justify-content: center;
   background-color: #fff;
   border-radius: 20px;
-  width: 55%;
+  width: 65%;
   span {
     margin: 5px 0;
   }
