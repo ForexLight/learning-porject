@@ -45,7 +45,7 @@ const Certificates: React.FC = () => {
   const certificates = useAppSelector((state: RootState) => state.certification)
 
   const certificatesStatus = certificates.map((i) => (
-    <CertificatesItem>
+    <CertificatesItem key={i.id}>
       <div>
         <span>{i.name}</span>
         <span>Date: {i.date}</span>
