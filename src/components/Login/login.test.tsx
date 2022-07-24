@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { cleanup, fireEvent, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from '../../store/store'
 import Login from './Login'
 import Main from '../Main/Main'
 
@@ -13,8 +15,10 @@ afterEach(cleanup)
 const setup = () => {
   const utils = render(
     <BrowserRouter>
-      <Login setVisibleNav={() => null} />
-      <Main />
+      <Provider store={store}>
+        <Login setVisibleNav={() => null} />
+        <Main />
+      </Provider>
     </BrowserRouter>,
   )
   const inputEmail = utils.getByLabelText('Email')

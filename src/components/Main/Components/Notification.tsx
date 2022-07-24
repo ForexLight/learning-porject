@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import SvgLoader from '../../../helpers/SvgLoader'
 import { NotificationContainerType, NotificationProps } from '../Types'
+import { useAppDispatch, useAppSelector } from '../../../hooks'
+import { RootState } from '../../../store/store'
+import { removeNotification } from '../../../store/slices/notificationSlice'
 
 const NotificationsStyle = styled.section<NotificationContainerType>`
   margin-top: 5px;
@@ -115,13 +118,16 @@ const NotificationItemStyle = styled.div`
 
 type Props = NotificationProps
 
-const Notification: React.FC<Props> = ({ notifications, deleteNotification }) => {
+const Notification: React.FC<Props> = () => {
+  const notifications = useAppSelector((state: RootState) => state.notification)
+  const dispatcher = useAppDispatch()
+
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const notifNodes = notifications.map((item) => (
     <NotificationItemStyle key={item.id}>
       <span>{item.info}</span>
       <span>{item.date}</span>
-      <button type='button' onClick={() => deleteNotification(Number(item.id))}>
+      <button type='button' onClick={() => dispatcher(removeNotification(item.id))}>
         <SvgLoader id='xmark' />
       </button>
     </NotificationItemStyle>
