@@ -13,6 +13,7 @@ import NavBar from '../components/NavBar/NavBar'
 import MedicalTests from '../components/MedicalTests/MedicalTests'
 import Doctors from '../components/Dotors/Doctors'
 import Calendar from '../components/Calendar/Calendar'
+import DoctorPage from '../components/DoctorsPage/DoctorPage'
 
 const AppWrapper = styled.main`
   max-width: 100vw;
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path='main' element={<Main />} />
             <Route path='calendar' element={<Calendar />} />
             <Route path='doctors' element={<Doctors />} />
+            <Route path='doctors/:id' element={<DoctorPage />} />
             <Route path='medicaltest' element={<MedicalTests />} />
           </Routes>
         </AppWrapper>

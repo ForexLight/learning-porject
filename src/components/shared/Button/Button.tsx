@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import SvgLoader from '../../../helpers/SvgLoader'
 
 interface ComponentProps {
   text: string
   onClick: () => void
   type: string
   size: string
-
   [x: string]: any
 }
 
@@ -31,6 +31,19 @@ const StyledButton = styled.button<StyledProps>`
 `
 const RegularStyledButton = styled(StyledButton)`
   background-color: #4caf50;
+`
+
+const BackStyledButton = styled(StyledButton)`
+  border: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  svg {
+    transform: rotate(90deg);
+    width: 14px;
+  }
 `
 
 const SecondaryStyledButton = styled(StyledButton)``
@@ -72,6 +85,13 @@ const Button: React.FC<Props> = ({ text, onClick, type, size, ...props }) => {
         <WarningStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </WarningStyledButton>
+      )
+    case 'Back':
+      return (
+        <BackStyledButton onClick={onClick} size={size} {...props}>
+          <SvgLoader id='arrow' />
+          <span>{text}</span>
+        </BackStyledButton>
       )
     default:
       return (
