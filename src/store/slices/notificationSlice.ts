@@ -1,6 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import data from '../../data'
-import login from '../../components/Login/Login'
 
 export interface notificationState {
   id: string
@@ -14,10 +13,10 @@ export const notificationSlice = createSlice({
   name: 'notification',
   initialState,
   reducers: {
-    addNotifications: (state, action: PayloadAction<notificationState>) => {
+    addNotifications: (state: notificationState[], action: PayloadAction<notificationState>) => {
       state.push(action.payload)
     },
-    removeNotification: (state, action: PayloadAction<string>) => {
+    removeNotification: (state: notificationState[], action: PayloadAction<string>) => {
       state.splice(
         state.findIndex((i) => i.id === action.payload),
         1,

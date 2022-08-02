@@ -14,10 +14,12 @@ export const scheduleSlice = createSlice({
   name: 'schedule',
   initialState,
   reducers: {
-    addScheduleItem: (state, action: PayloadAction<scheduleState>) => {
-      state.push(action.payload)
+    addScheduleItem: (state: scheduleState[], action: PayloadAction<scheduleState>) => {
+      state.findIndex((i) => i.date === action.payload.date) < 0
+        ? state.push(action.payload)
+        : console.log('already in state')
     },
-    removeScheduleItem: (state, action: PayloadAction<string>) => {
+    removeScheduleItem: (state: scheduleState[], action: PayloadAction<string>) => {
       state.splice(
         state.findIndex((i) => i.id === action.payload),
         1,

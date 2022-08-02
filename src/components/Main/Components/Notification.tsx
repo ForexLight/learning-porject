@@ -4,7 +4,7 @@ import SvgLoader from '../../../helpers/SvgLoader'
 import { NotificationContainerType, NotificationProps } from '../Types'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { RootState } from '../../../store/store'
-import { removeNotification } from '../../../store/slices/notificationSlice'
+import { notificationState, removeNotification } from '../../../store/slices/notificationSlice'
 
 const NotificationsStyle = styled.section<NotificationContainerType>`
   margin-top: 5px;
@@ -13,9 +13,11 @@ const NotificationsStyle = styled.section<NotificationContainerType>`
   width: 100%;
 
   position: relative;
+
   svg {
     width: 36px;
   }
+
   .notificationTitle {
     border-radius: 20px;
     background-color: orange;
@@ -23,12 +25,14 @@ const NotificationsStyle = styled.section<NotificationContainerType>`
     justify-content: space-between;
     width: 100%;
     padding: 5px;
+
     .notificationCounter {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100px;
+
       span {
         top: 35px;
         left: 20px;
@@ -42,6 +46,7 @@ const NotificationsStyle = styled.section<NotificationContainerType>`
         color: white;
         position: absolute;
       }
+
       button {
         transform: ${(props) => (props.visible ? 'rotate(360deg)' : 'rotate(270deg)')};
         transition: transform 0.3s ease-in-out;
@@ -49,10 +54,12 @@ const NotificationsStyle = styled.section<NotificationContainerType>`
         background: none;
       }
     }
+
     h2 {
       font-size: 24px;
     }
   }
+
   @media (min-width: 540px) {
     .notificationTitle {
       width: 60%;
@@ -104,12 +111,15 @@ const NotificationItemStyle = styled.div`
   padding: 5px;
   border-radius: 10px;
   width: 100%;
+
   span {
     font-size: 18px;
   }
+
   button {
     background: none;
     border: none;
+
     svg {
       width: 30px;
     }
@@ -123,7 +133,7 @@ const Notification: React.FC<Props> = () => {
   const dispatcher = useAppDispatch()
 
   const [isVisible, setIsVisible] = useState<boolean>(false)
-  const notifNodes = notifications.map((item) => (
+  const notifNodes = notifications.map((item: notificationState) => (
     <NotificationItemStyle key={item.id}>
       <span>{item.info}</span>
       <span>{item.date}</span>

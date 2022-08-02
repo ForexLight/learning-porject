@@ -10,6 +10,7 @@ const DoctorContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   button {
     align-self: flex-start;
   }
@@ -22,25 +23,30 @@ const DataContainer = styled.div`
   width: 100%;
   padding: 5px;
   font-size: 22px;
+
   img {
     border-radius: 20px;
     object-fit: cover;
     width: 25%;
     margin-right: 5%;
   }
+
   .title {
     svg {
       color: black;
     }
+
     .name {
       font-weight: bold;
       font-size: 24px;
     }
+
     .speciality {
       font-weight: 400;
       font-size: 16px;
       color: darkgray;
     }
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,6 +54,7 @@ const DataContainer = styled.div`
     justify-content: center;
     width: 70%;
   }
+
   p {
     padding: 10px;
     width: 100%;
@@ -58,7 +65,6 @@ const DoctorPage: React.FC = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const doctor = useAppSelector((state) => state.doctorReducer.doctors.filter((i) => i.id === id))
-  console.log(doctor)
   return (
     <DoctorContainer>
       <Button

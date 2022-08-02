@@ -14,10 +14,10 @@ export const certificationSlice = createSlice({
   name: 'certification',
   initialState,
   reducers: {
-    addCertificate: (state, action: PayloadAction<certificationState>) => {
+    addCertificate: (state: certificationState[], action: PayloadAction<certificationState>) => {
       state.push(action.payload)
     },
-    removeCertificate: (state, action: PayloadAction<string>) => {
+    removeCertificate: (state: certificationState[], action: PayloadAction<string>) => {
       state.splice(
         state.findIndex((i) => i.id === action.payload),
         1,

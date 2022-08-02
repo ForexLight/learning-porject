@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useAppSelector } from '../../../hooks'
 import { RootState } from '../../../store/store'
+import { certificationState } from '../../../store/slices/certificatSlice'
 
 const CertificatesContainer = styled.section`
   flex: 1;
@@ -44,7 +45,7 @@ const CertificatesItem = styled.div`
 const Certificates: React.FC = () => {
   const certificates = useAppSelector((state: RootState) => state.certification)
 
-  const certificatesStatus = certificates.map((i) => (
+  const certificatesStatus = certificates.map((i: certificationState) => (
     <CertificatesItem key={i.id}>
       <div>
         <span>{i.name}</span>
