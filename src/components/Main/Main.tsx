@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Greeting from './Components/Greeting'
 import Notification from './Components/Notification'
 import data from '../../data'
-import { NotificationType } from './Types'
+import { NotificationType } from './Main.type'
 import BmiCalculator from './Components/BmiCalculator'
 import Certificates from './Components/Certificates'
 import Schedule from './Components/Schedule'
@@ -12,7 +12,7 @@ import Schedule from './Components/Schedule'
 const StyledMain = styled.div`
   padding: 0 5px;
   @media (min-width: 542px) {
-    height: 100vh;
+    height: 100%;
     padding: 5px;
   }
 `
@@ -25,13 +25,13 @@ const AdditionalContainer = styled.div`
     .leftSide {
       width: 50%;
     }
+
     .rightSide {
       padding-left: 5px;
       height: 100%;
-
       width: 50%;
-      overflow: visible;
     }
+
     margin-top: 20px;
     padding: 20px;
   }

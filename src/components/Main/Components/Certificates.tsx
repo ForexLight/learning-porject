@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { CertificatesType } from '../Types'
+import { useAppSelector } from '../../../hooks'
+import { RootState } from '../../../store/store'
+import { certificationState } from '../../../store/slices/certificatSlice'
 
 const CertificatesContainer = styled.section`
   flex: 1;
@@ -41,26 +43,10 @@ const CertificatesItem = styled.div`
 `
 
 const Certificates: React.FC = () => {
-  const [certificates] = useState<CertificatesType[]>([
-    {
-      name: 'Covid Certificate',
-      result: 'positive',
-      date: '20.07.2022',
-    },
-    {
-      name: 'Blood test',
-      result: 'OK',
-      date: '20.07.2022',
-    },
-    {
-      name: 'Urine test',
-      result: 'OK',
-      date: '20.07.2022',
-    },
-  ])
+  const certificates = useAppSelector((state: RootState) => state.certification)
 
-  const certificatesStatus = certificates.map((i) => (
-    <CertificatesItem>
+  const certificatesStatus = certificates.map((i: certificationState) => (
+    <CertificatesItem key={i.id}>
       <div>
         <span>{i.name}</span>
         <span>Date: {i.date}</span>
