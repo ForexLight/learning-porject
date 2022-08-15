@@ -1,91 +1,34 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import getWeeksDay from '../../../helpers/getWeeksDay'
-import getHours from '../../../helpers/getHours'
-import Button from '../../shared/Button/Button'
-import { useAppDispatch } from '../../../hooks'
+import React, { useEffect, useState } from 'react'
 import { addScheduleItem } from '../../../store/slices/scheduleSlice'
 
-const BookVisitContainer = styled.div`
-  color: black;
+import { useAppDispatch, useAppSelector } from '../../../hooks'
 
-  h3 {
-    padding-left: 10px;
-    margin: 0;
-  }
+import getWeeksDay, { getDayFormatted } from '../../../helpers/getWeeksDay'
+import getHours, { getStringTime } from '../../../helpers/getHours'
+import Button from '../../shared/Button/Button'
+import { ChooseDayType } from './Types'
+import {
+  BookVisitContainer,
+  ChooseDayContainer,
+  ChooseTimeContainer,
+  DayContainer,
+  TimeContainer,
+} from './Styles'
 
-  width: 100%;
-  height: 100%;
-  margin-bottom: 70px;
-`
-
-const ChooseDayContainer = styled.div`
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-const DayContainer = styled.div<ContainerType>`
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  width: 130px;
-  padding: 20px;
-  margin: 5px;
-  border-radius: 20px;
-  background-color: ${(props) => (props.active ? '#22ff00' : 'rgba(136,136,136,0.25)')};
-
-  span {
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 130px;
-  }
-`
-
-const ChooseTimeContainer = styled.div`
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const TimeContainer = styled.div<ContainerType>`
-  border-radius: 20px;
-  margin: 5px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) => (props.active ? 'green' : 'gray')};
-`
-type ContainerType = {
-  active: boolean
-}
-type ChooseDayType = {
-  date: string
-  day: string
-  id: string
-}
 const BookVisit: React.FC = () => {
   const dispatcher = useAppDispatch()
+  const schedule = useAppSelector((state) => state.schedule)
   const [chooseDay, setChooseDay] = useState<ChooseDayType>({
     date: '',
     day: '',
     id: '',
   })
   const [chooseTime, setChooseTime] = useState('')
-  const day = getWeeksDay(new Date())
-  const time = getHours(new Date())
+
+  useEffect(() => {
+    setChooseTime('')
+  }, [chooseDay.day])
+
   const dateFormatter = () => {
     const date = new Date(chooseDay.id)
     const hours = chooseTime.split(':')
@@ -94,24 +37,45 @@ const BookVisit: React.FC = () => {
     date.setSeconds(0)
     dispatcher(
       addScheduleItem({
-        id: `${new Date()}`,
-        date: `${date}`,
+        id: `${new Date().getTime()}`,
+        date: `${new Date(date)}`,
         info: 'new info',
         place: 'doctors place',
       }),
     )
   }
-  const dayNodes = day.map((i) => (
-    <DayContainer key={i.id} onClick={() => setChooseDay(i)} active={i.date === chooseDay.date}>
+  const dayNodes = getWeeksDay(new Date()).map((i) => (
+    <DayContainer
+      key={i.id}
+      onClick={() => setChooseDay(i)}
+      active={i.date === chooseDay.date}
+      isInactive={false}
+    >
       <span>{i.day}</span>
       <span>{i.date}</span>
     </DayContainer>
   ))
-  const timeNodes = time.map((i) => (
-    <TimeContainer key={i} onClick={() => setChooseTime(i)} active={i === chooseTime}>
-      {i}
-    </TimeContainer>
-  ))
+  const timeNodes = getHours(new Date()).map((i) => {
+    let isDisabled = false
+    schedule.forEach((item) => {
+      if (
+        getStringTime(new Date(item.date)) === i &&
+        getDayFormatted(new Date(item.date)) === chooseDay.day
+      ) {
+        isDisabled = true
+      }
+    })
+    return (
+      <TimeContainer
+        key={i}
+        onClick={() => setChooseTime(i)}
+        active={i === chooseTime}
+        isInactive={isDisabled}
+      >
+        {i}
+      </TimeContainer>
+    )
+  })
   return (
     <BookVisitContainer>
       <h3>Choose day</h3>

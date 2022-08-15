@@ -1,3 +1,6 @@
+export const getStringTime = (i: Date): string =>
+  `${i.getHours()}:${String(i.getMinutes()).padStart(2, '0')}`
+
 const getHours = (date: Date) => {
   const activeHours: Date[] = []
   date.setHours(18, 0, 0, 0)
@@ -6,7 +9,7 @@ const getHours = (date: Date) => {
     newDate.setTime(newDate.getTime() - 1800000 * i)
     activeHours.push(newDate)
   }
-  return activeHours.map((i) => `${i.getHours()}:${String(i.getMinutes()).padStart(2, '0')}`)
+  return activeHours.map((i) => getStringTime(i))
 }
 
 export default getHours

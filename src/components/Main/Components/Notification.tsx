@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import SvgLoader from '../../../helpers/SvgLoader'
-import { NotificationContainerType, NotificationProps } from '../Types'
+import { NotificationContainerType, NotificationProps } from '../Main.type'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { RootState } from '../../../store/store'
 import { notificationState, removeNotification } from '../../../store/slices/notificationSlice'

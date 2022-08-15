@@ -7,13 +7,14 @@ const StarsContainer = styled.div`
     width: 18px;
   }
 `
+
 interface OwnProps {
   number: number
 }
 
 type Props = OwnProps
 
-const GetStart: React.FC<Props> = ({ number }) => {
+const GetStars: React.FC<Props> = ({ number }) => {
   let num = number
   const stars = []
   for (let i = 5; i > 0; i -= 1) {
@@ -29,4 +30,4 @@ const GetStart: React.FC<Props> = ({ number }) => {
   return <StarsContainer>{stars}</StarsContainer>
 }
 
-export default GetStart
+export default GetStars

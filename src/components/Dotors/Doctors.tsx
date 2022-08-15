@@ -8,6 +8,7 @@ const DoctorsContainer = styled.div`
   background-color: red;
   color: black;
   width: 100%;
+
   a {
     text-decoration: none;
     color: black;
@@ -21,10 +22,12 @@ const DoctorsItem = styled.div`
   border-radius: 20px;
   background-color: blue;
   margin: 5px;
+
   img {
     border-radius: 20px 0 0 20px;
     max-width: 130px;
   }
+
   div {
     display: flex;
     align-items: flex-end;
@@ -37,24 +40,23 @@ const DoctorsItem = styled.div`
 const Doctors: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('')
   const doctors = useAppSelector((state) => state.doctorReducer.doctors)
-  const doctorFilter = () =>
-    doctors
-      .filter((i) => i.speciality === activeCategory)
-      .map((i) => (
-        <Link to={i.id}>
-          <DoctorsItem key={i.id}>
-            <img src={i.photo} alt='doctor face' />
-            <div>
-              <span>{i.name}</span> <span>{i.speciality}</span>
-            </div>
-          </DoctorsItem>
-        </Link>
-      ))
+  const doctorFiltered = doctors
+    .filter((i) => i.speciality === activeCategory)
+    .map((i) => (
+      <Link to={i.id}>
+        <DoctorsItem key={i.id}>
+          <img src={i.photo} alt='doctor face' />
+          <div>
+            <span>{i.name}</span> <span>{i.speciality}</span>
+          </div>
+        </DoctorsItem>
+      </Link>
+    ))
 
   return (
     <DoctorsContainer>
       <Categories activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-      <div>{activeCategory ? doctorFilter() : 'Choose category'}</div>
+      <div>{activeCategory ? doctorFiltered : 'Choose category'}</div>
     </DoctorsContainer>
   )
 }

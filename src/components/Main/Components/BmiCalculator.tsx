@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { PhysiqueType } from '../Types'
+import { PhysiqueType } from '../Main.type'
 import getBMI from '../../../helpers/getBmi'
 
 const BmiCalculatorContainer = styled.section`

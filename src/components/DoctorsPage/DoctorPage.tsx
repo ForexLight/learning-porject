@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAppSelector } from '../../hooks'
-import GetStart from '../../helpers/GetStart'
+import GetStars from '../../helpers/GetStars'
 import Button from '../shared/Button/Button'
 import BookVisit from './components/BookVisit'
 
@@ -64,7 +64,9 @@ const DataContainer = styled.div`
 const DoctorPage: React.FC = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-  const doctor = useAppSelector((state) => state.doctorReducer.doctors.filter((i) => i.id === id))
+  const doctor = useAppSelector(
+    (state) => state.doctorReducer.doctors.filter((i) => i.id === id)[0],
+  )
   return (
     <DoctorContainer>
       <Button
@@ -74,11 +76,11 @@ const DoctorPage: React.FC = () => {
         text='back to doctor list'
       />
       <DataContainer>
-        <img src={doctor[0].photo} alt='doctor' />
+        <img src={doctor.photo} alt='doctor' />
         <div className='title'>
-          <GetStart number={Number(doctor[0].rating)} />
-          <span className='name'>{doctor[0].name}</span>
-          <span className='speciality'>{doctor[0].speciality}</span>
+          <GetStars number={Number(doctor.rating)} />
+          <span className='name'>{doctor.name}</span>
+          <span className='speciality'>{doctor.speciality}</span>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, reiciendis sunt.
