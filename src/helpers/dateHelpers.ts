@@ -5,7 +5,10 @@ type Day = {
 }
 export const getDayFormatted = (i: Date) =>
   new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(i)
-const getWeeksDay = (time: Date) => {
+export const getDateFormatted = (i: Date): string =>
+  `${i.getDate()} ${i.toLocaleString('en-US', { month: 'long' })}`
+
+export const getWeeksDay = (time: Date) => {
   const days: Date[] = []
   for (let i = 0; i <= 9; i += 1) {
     const newTime = new Date(time)
@@ -15,10 +18,8 @@ const getWeeksDay = (time: Date) => {
   const daysString: Day[] = days.map((i) => ({
     id: `${i}`,
     day: getDayFormatted(i),
-    date: `${i.getDate()} ${i.toLocaleString('en-US', { month: 'long' })}`,
+    date: getDateFormatted(i),
   }))
   daysString[0].day = 'Today'
   return daysString
 }
-
-export default getWeeksDay
