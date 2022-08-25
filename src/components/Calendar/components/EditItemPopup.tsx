@@ -38,7 +38,7 @@ type PopupStyledProps = {
 }
 interface OwnProps {
   popupActive: boolean
-  pushChangings: () => void
+  pushChanging: () => void
   popupActiveItem: scheduleState
   updateItem: (i: scheduleState) => void
   setPopupActive: (i: boolean) => void
@@ -51,7 +51,7 @@ const EditItemPopup: React.FC<Props> = ({
   popupActiveItem,
   setPopupActive,
   updateItem,
-  pushChangings,
+  pushChanging,
 }) => {
   const { id, info, date, place } = popupActiveItem
 
@@ -86,7 +86,16 @@ const EditItemPopup: React.FC<Props> = ({
             onChange={(e) => updateItem({ ...popupActiveItem, place: e.target.value })}
             value={place}
           />
-          <Button onClick={() => pushChangings()} type='regular' size='30%' text='Update' />
+          <Button
+            type='regular'
+            onClick={(e) => {
+              e.stopPropagation()
+              console.log(e)
+              pushChanging()
+            }}
+            size='30%'
+            text='change'
+          />
         </form>
       </PopupContent>
     </PopupStyled>

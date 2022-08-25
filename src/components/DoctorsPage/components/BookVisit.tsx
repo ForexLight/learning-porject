@@ -82,7 +82,7 @@ const BookVisit: React.FC = () => {
       <ChooseDayContainer>{dayNodes}</ChooseDayContainer>
       <h3>Choose time</h3>
       <ChooseTimeContainer>{timeNodes}</ChooseTimeContainer>
-      <Button onClick={() => dateFormatter()} size='100%' type='regular' text='book visit' />
+      <Button onClick={(e) => dateFormatter()} size='100%' type='regular' text='book visit' />
     </BookVisitContainer>
   )
 }

@@ -55,7 +55,7 @@ const CalendarPage: React.FC = () => {
   const updateItem = (item: scheduleState): void => {
     setPopupActiveItem({ ...popupActiveItem, ...item })
   }
-  const pushChangings = (): void => {
+  const pushChanging = (): void => {
     dispatcher(updateScheduleItem(popupActiveItem))
   }
   return (
@@ -71,7 +71,7 @@ const CalendarPage: React.FC = () => {
         popupActive={popupActive}
         popupActiveItem={popupActiveItem}
         updateItem={updateItem}
-        pushChangings={pushChangings}
+        pushChanging={pushChanging}
         setPopupActive={setPopupActive}
       />
     </CalendarContainer>

@@ -4,7 +4,7 @@ import SvgLoader from '../../../helpers/SvgLoader'
 
 interface ComponentProps {
   text: string
-  onClick: () => void
+  onClick: (e?: any) => void
   type: string
   size: string
   [x: string]: any
@@ -58,7 +58,7 @@ const Button: React.FC<Props> = ({ text, onClick, type, size, ...props }) => {
   switch (type) {
     case 'regular':
       return (
-        <RegularStyledButton onClick={onClick} size={size} {...props}>
+        <RegularStyledButton type='button' onClick={onClick} size={size} {...props}>
           {text}
         </RegularStyledButton>
       )
