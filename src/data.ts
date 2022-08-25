@@ -28,28 +28,22 @@ const notifications = [
 
 const scheduleItems = [
   {
-    id: '1',
-    info: 'some info',
-    place: 'PLACE street some street',
-    date: '20.10.2022',
+    id: '1661073052769',
+    date: 'Mon Aug 22 2022 17:30:00 GMT+0300 (Восточная Европа, летнее время)',
+    info: 'new info',
+    place: 'doctors place',
   },
   {
-    id: '2',
-    info: 'some info',
-    place: 'PLACE street some street',
-    date: '20.10.2022',
+    id: '1261073052769',
+    date: 'Mon Aug 22 2022 17:30:00 GMT+0300 (Восточная Европа, летнее время)',
+    info: 'new info',
+    place: 'doctors place',
   },
   {
-    id: '3',
-    info: 'some info',
-    place: 'PLACE street some street',
-    date: '20.10.2022',
-  },
-  {
-    id: '4',
-    info: 'some info',
-    place: 'PLACE street some street',
-    date: '20.10.2022',
+    id: '1661073052761',
+    date: 'Mon Aug 22 2022 17:30:00 GMT+0300 (Восточная Европа, летнее время)',
+    info: 'new info',
+    place: 'doctors place',
   },
 ]
 const certificates = [
