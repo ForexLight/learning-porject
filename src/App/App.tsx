@@ -12,7 +12,7 @@ import Main from '../components/Main/Main'
 import NavBar from '../components/NavBar/NavBar'
 import MedicalTests from '../components/MedicalTests/MedicalTests'
 import Doctors from '../components/Dotors/Doctors'
-import Calendar from '../components/Calendar/Calendar'
+import Calendar from '../components/Calendar/CalendarPage'
 import DoctorPage from '../components/DoctorsPage/DoctorPage'
 
 const AppWrapper = styled.main`

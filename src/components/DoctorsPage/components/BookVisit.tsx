@@ -3,7 +3,7 @@ import { addScheduleItem } from '../../../store/slices/scheduleSlice'
 
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 
-import getWeeksDay, { getDayFormatted } from '../../../helpers/getWeeksDay'
+import { getDateFormatted, getDayFormatted, dateHelpers } from '../../../helpers/dateHelpers'
 import getHours, { getStringTime } from '../../../helpers/getHours'
 import Button from '../../shared/Button/Button'
 import { ChooseDayType } from './Types'
@@ -44,7 +44,7 @@ const BookVisit: React.FC = () => {
       }),
     )
   }
-  const dayNodes = getWeeksDay(new Date()).map((i) => (
+  const dayNodes = dateHelpers(new Date()).map((i) => (
     <DayContainer
       key={i.id}
       onClick={() => setChooseDay(i)}
@@ -60,7 +60,7 @@ const BookVisit: React.FC = () => {
     schedule.forEach((item) => {
       if (
         getStringTime(new Date(item.date)) === i &&
-        getDayFormatted(new Date(item.date)) === chooseDay.day
+        getDateFormatted(new Date(item.date)) === chooseDay.date
       ) {
         isDisabled = true
       }
@@ -82,7 +82,7 @@ const BookVisit: React.FC = () => {
       <ChooseDayContainer>{dayNodes}</ChooseDayContainer>
       <h3>Choose time</h3>
       <ChooseTimeContainer>{timeNodes}</ChooseTimeContainer>
-      <Button onClick={() => dateFormatter()} size='100%' type='regular' text='book visit' />
+      <Button onClick={(e) => dateFormatter()} size='100%' type='regular' text='book visit' />
     </BookVisitContainer>
   )
 }

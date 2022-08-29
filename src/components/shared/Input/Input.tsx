@@ -34,8 +34,8 @@ type Props = OwnProps
 
 const Input: React.FC<Props> = ({ label, onChange, isError, ...props }) => (
   <InputContainer isError={isError}>
-    <label htmlFor='input'>{label}</label>
-    <input id='input' type='text' required onChange={onChange} {...props} />
+    <label htmlFor={label}>{label}</label>
+    <input id={label} type='text' required onChange={onChange} {...props} />
   </InputContainer>
 )
 
