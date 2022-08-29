@@ -21,7 +21,12 @@ const CalendarPage: React.FC = () => {
   const [time, setTime] = useState(new Date())
   const [chosenDay, setChosenDay] = useState(new Date())
   const [popupActive, setPopupActive] = useState(false)
-  const [popupActiveItem, setPopupActiveItem] = useState({ id: '', info: '', place: '', date: '' })
+  const [popupActiveItem, setPopupActiveItem] = useState({
+    id: '',
+    info: '',
+    place: '',
+    date: '',
+  })
 
   const forwardMonth = (): void => {
     const funcTime = time
@@ -48,7 +53,6 @@ const CalendarPage: React.FC = () => {
 
   const editItem = (item: scheduleState): void => {
     setPopupActive(true)
-    console.log(item)
     setPopupActiveItem({ ...popupActiveItem, ...item })
   }
 
@@ -56,6 +60,7 @@ const CalendarPage: React.FC = () => {
     setPopupActiveItem({ ...popupActiveItem, ...item })
   }
   const pushChanging = (): void => {
+    setPopupActive(false)
     dispatcher(updateScheduleItem(popupActiveItem))
   }
   return (

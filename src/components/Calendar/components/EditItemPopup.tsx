@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Input from '../../shared/Input/Input'
 import Button from '../../shared/Button/Button'
@@ -24,6 +24,7 @@ const PopupContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   form {
     height: 100%;
     width: 100%;
@@ -36,6 +37,7 @@ const PopupContent = styled.div`
 type PopupStyledProps = {
   popupActive: boolean
 }
+
 interface OwnProps {
   popupActive: boolean
   pushChanging: () => void
@@ -55,8 +57,6 @@ const EditItemPopup: React.FC<Props> = ({
 }) => {
   const { id, info, date, place } = popupActiveItem
 
-  console.log(popupActiveItem)
-
   const popupExit = (e: React.MouseEvent<HTMLDivElement>): void => {
     setPopupActive(false)
   }
@@ -71,26 +71,40 @@ const EditItemPopup: React.FC<Props> = ({
           <Input
             isError={false}
             label='date'
-            onChange={(e) => updateItem({ ...popupActiveItem, date: e.target.value })}
+            onChange={(e) =>
+              updateItem({
+                ...popupActiveItem,
+                date: e.target.value,
+              })
+            }
             value={date}
           />
           <Input
             isError={false}
             label='info'
-            onChange={(e) => updateItem({ ...popupActiveItem, info: e.target.value })}
+            onChange={(e) =>
+              updateItem({
+                ...popupActiveItem,
+                info: e.target.value,
+              })
+            }
             value={info}
           />
           <Input
             isError={false}
             label='place'
-            onChange={(e) => updateItem({ ...popupActiveItem, place: e.target.value })}
+            onChange={(e) =>
+              updateItem({
+                ...popupActiveItem,
+                place: e.target.value,
+              })
+            }
             value={place}
           />
           <Button
             type='regular'
             onClick={(e) => {
               e.stopPropagation()
-              console.log(e)
               pushChanging()
             }}
             size='30%'
