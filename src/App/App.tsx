@@ -25,7 +25,7 @@ const AppWrapper = styled.main`
 `
 
 const App: React.FC = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [isAuth, setIsAuth] = useState<boolean>(true)
   return (
     <Router>
       <Provider store={store}>

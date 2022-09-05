@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Input from '../shared/Input/Input'
 import { PostTypes } from './Types'
-import Post from './components/Post'
+import PostCard from './components/PostCard'
 
 const PlaceHolderContainer = styled.div``
 const PostContainer = styled.section``
@@ -23,7 +23,6 @@ const PlaceHolderJSON: React.FC<Props> = () => {
       .catch((e) => console.log(e))
   }, [])
 
-  console.log(data)
   const deletePost = (id: string): void => {
     setData(data.filter((i) => i.id !== id))
   }
@@ -33,7 +32,7 @@ const PlaceHolderJSON: React.FC<Props> = () => {
   const filterByQuery = () => data.filter((i) => i.title.includes(searchQuery))
   const posts = data
     ? filterByQuery().map((i) => (
-        <Post key={i.id} post={i} deletePost={deletePost} likePost={likePost} />
+        <PostCard key={i.id} post={i} deletePost={deletePost} likePost={likePost} />
       ))
     : null
   return (
