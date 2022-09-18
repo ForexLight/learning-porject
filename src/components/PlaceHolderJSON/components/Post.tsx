@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CommentTypes, PostTypes, UserTypes } from '../Types'
 import { mockedUserData } from '../mokedData'
+import Loader from '../../shared/Loader/Loader'
 
 const PostContainer = styled.section`
   background-color: #f2f59d;
@@ -115,14 +116,20 @@ const Post: React.FC = () => {
       .then((res) => setPostComments(res))
   }, [])
   useEffect(() => {
+    const waitingTime = 1000
     fetch(`https://jsonplaceholder.typicode.com/users/${postData.userId}`)
       .then((res) => res.json())
       .then((res) => setUserData(res))
-      .then(() => setIsLoaded(true))
+      .then(() =>
+        setTimeout(() => {
+          setIsLoaded(true)
+        }, waitingTime),
+      )
   }, [postData.userId])
   const formattedImgUrl = userData.name ? userData.name.split(' ').join('+') : ''
-  return isLoaded ? (
+  return (
     <>
+      {isLoaded ? null : <Loader />}
       <PostContainer>
         <TopLinks
           onClick={() => {
@@ -154,8 +161,6 @@ const Post: React.FC = () => {
         ))}
       </CommentsContainer>
     </>
-  ) : (
-    <div>all wrong</div>
   )
 }
 
