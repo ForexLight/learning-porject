@@ -21,6 +21,12 @@ export type UserTypes = {
   website: string
   company: CompanyTypes
 }
+export type PageIndicatorType = {
+  active: boolean
+}
+export type PostStyledType = {
+  like: boolean
+}
 
 type AddressTypes = {
   street: string

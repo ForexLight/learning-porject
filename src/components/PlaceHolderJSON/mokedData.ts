@@ -21,3 +21,10 @@ export const mockedUserData = {
     bs: '',
   },
 }
+
+export const mockedPostData = {
+  id: '',
+  userId: '',
+  title: '',
+  body: '',
+}
