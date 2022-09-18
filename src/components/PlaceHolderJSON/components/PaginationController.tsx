@@ -13,6 +13,7 @@ const PagesController = styled.ul`
 const PageIndicator = styled.li<PageIndicatorType>`
   display: flex;
   align-items: center;
+  min-width: 30px;
   justify-content: center;
   background-color: ${(props) => (props.active ? 'red' : 'transparent')};
   color: black;

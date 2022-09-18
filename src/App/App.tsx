@@ -15,6 +15,7 @@ import Doctors from '../components/Dotors/Doctors'
 import Calendar from '../components/Calendar/CalendarPage'
 import DoctorPage from '../components/DoctorsPage/DoctorPage'
 import PlaceHolderJSON from '../components/PlaceHolderJSON/PlaceHolderJSON'
+import Post from '../components/PlaceHolderJSON/components/Post'
 
 const AppWrapper = styled.main`
   max-width: 100vw;
@@ -25,7 +26,7 @@ const AppWrapper = styled.main`
 `
 
 const App: React.FC = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(true)
+  const [isAuth, setIsAuth] = useState<boolean>(false)
   return (
     <Router>
       <Provider store={store}>
@@ -43,6 +44,7 @@ const App: React.FC = () => {
             <Route path='doctors/:id' element={<DoctorPage />} />
             <Route path='medicaltest' element={<MedicalTests />} />
             <Route path='placeholder' element={<PlaceHolderJSON />} />
+            <Route path='placeholder/:id' element={<Post />} />
           </Routes>
         </AppWrapper>
       </Provider>
