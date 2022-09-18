@@ -134,8 +134,7 @@ const Post: React.FC = () => {
         <PostTitle>{postData.title}</PostTitle>
         <PostData>{postData.body}</PostData>
         <UserData>
-          <img src={`https://eu.ui-avatars.com/api/?name=${formattedImgUrl}`}
-               alt='userImg' />
+          <img src={`https://eu.ui-avatars.com/api/?name=${formattedImgUrl}`} alt='userImg' />
           <UserContacts>
             <span>{userData.name}</span>
             <span>{userData.email}</span>
