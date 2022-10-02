@@ -124,6 +124,9 @@ describe('FILTER CONTROLLER COMPONENT TEST', () => {
       },
     },
   ]
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   test('expect to render', () => {
     render(
       <FilterController
@@ -188,6 +191,7 @@ describe('FILTER CONTROLLER COMPONENT TEST', () => {
 
     fireEvent.click(radioFirst)
     fireEvent.click(radioSecond)
+
     expect(mockSetPageCallback.mock.calls.length).toBe(2)
     expect(mockSetIsLikedShow.mock.calls.length).toBe(2)
   })
