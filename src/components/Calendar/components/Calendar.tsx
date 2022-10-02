@@ -61,8 +61,8 @@ const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
     } while (time.getDate() !== lastDay.getDate())
     if (String(arr[0].getDay()) !== '1') {
       for (let i = arr[0].getDay() === 0 ? 6 : arr[0].getDay() - 1; i >= 1; i -= 1) {
-        prevMonthLastDay.setDate(prevMonthLastDay.getDate() - 1)
         arr.unshift(new Date(prevMonthLastDay))
+        prevMonthLastDay.setDate(prevMonthLastDay.getDate() - 1)
       }
     }
     if (

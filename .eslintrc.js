@@ -55,7 +55,14 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'no-magic-numbers': ['error', { ignore: [-1, 0, 1, 2, 3, 4, 5] }],
     'react/jsx-props-no-spreading': 'off',
-    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+      },
+    ],
   },
 }

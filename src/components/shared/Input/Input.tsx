@@ -5,7 +5,7 @@ const InputContainer = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 100%;
   padding: 5px;
 
   input {
