@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { PlaceHolderNav, RadioGroup } from './FilterController.styles'
-import Input from '../../shared/Input/Input'
-import { UserTypes } from '../Types'
+import Input from '../../../shared/Input/Input'
+import { UserTypes } from '../../Types'
 
 interface OwnProps {
   setSearchQuery: (i: string) => void
@@ -20,23 +20,24 @@ const FilterController: FunctionComponent<Props> = ({
   setPage,
   setIsLikedShow,
 }) => (
-  <PlaceHolderNav>
+  <PlaceHolderNav data-testid='filter-component'>
     <Input isError label='' onChange={(e) => setSearchQuery(e.target.value)} placeholder='search' />
     <select name='selectUsers' id='selectUsers' onChange={(e) => setSelectId(e.target.value)}>
       <option value='0'>choose user</option>
       {users.map((i) => (
-        <option value={i.id} key={i.id}>
+        <option value={i.id} key={i.id} data-testid='user-option'>
           user with {i.id}
         </option>
       ))}
     </select>
     <RadioGroup>
-      <label htmlFor='contactChoice1'>
+      <label htmlFor='choice1'>
         <input
+          data-testid='choice-1'
           type='radio'
-          id='contactChoice1'
-          name='contact'
-          value='email'
+          id='choice1'
+          name='filter'
+          value='show liked'
           onClick={() => {
             setPage(0)
             setIsLikedShow(true)
@@ -44,12 +45,13 @@ const FilterController: FunctionComponent<Props> = ({
         />
         Show liked
       </label>
-      <label htmlFor='contactChoice2'>
+      <label htmlFor='choice2'>
         <input
+          data-testid='choice-2'
           type='radio'
-          id='contactChoice2'
-          name='contact'
-          value='phone'
+          id='choice2'
+          name='filter'
+          value='Show all'
           onClick={() => {
             setPage(0)
             setIsLikedShow(false)

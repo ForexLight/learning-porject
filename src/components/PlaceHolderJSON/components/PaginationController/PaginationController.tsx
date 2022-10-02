@@ -23,19 +23,24 @@ const PaginationController: React.FC<Props> = ({
     pages.push(i)
   }
   return (
-    <PaginationContainer>
+    <PaginationContainer data-testid='pagination-container'>
       <PagesController>
-        <PageIndicator active={false} onClick={() => prevPage()}>
+        <PageIndicator active={false} onClick={() => prevPage()} data-testid='prev-page-container'>
           {'<'}
         </PageIndicator>
         {pages
           .map((i) => (
-            <PageIndicator onClick={() => setPage(Number(i))} key={i} active={page === i}>
+            <PageIndicator
+              onClick={() => setPage(Number(i))}
+              key={i}
+              active={page === i}
+              data-testid='page-indicator'
+            >
               {i}
             </PageIndicator>
           ))
           .reverse()}
-        <PageIndicator active={false} onClick={() => nextPage()}>
+        <PageIndicator active={false} onClick={() => nextPage()} data-testid='next-page-container'>
           {'>'}
         </PageIndicator>
       </PagesController>

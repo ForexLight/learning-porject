@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { PostStyledType } from '../Types'
+import { PostStyledType } from '../../Types'
 
 export const PostStyled = styled.article<PostStyledType>`
   color: black;

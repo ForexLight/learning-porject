@@ -15,7 +15,7 @@ import Doctors from '../components/Dotors/Doctors'
 import Calendar from '../components/Calendar/CalendarPage'
 import DoctorPage from '../components/DoctorsPage/DoctorPage'
 import PlaceHolderJSON from '../components/PlaceHolderJSON/PlaceHolderJSON'
-import Post from '../components/PlaceHolderJSON/components/Post'
+import Post from '../components/PlaceHolderJSON/components/Post/Post'
 
 const AppWrapper = styled.main`
   max-width: 100vw;

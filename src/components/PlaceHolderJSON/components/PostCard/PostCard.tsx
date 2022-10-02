@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PostTypes } from '../Types'
-import Button from '../../shared/Button/Button'
+import { PostTypes } from '../../Types'
+import Button from '../../../shared/Button/Button'
 import {
   PostButtonContainer,
   PostInfoContainer,
@@ -27,7 +27,7 @@ const PostCard: React.FC<Props> = ({ post, likePost, deletePost, likedPosts }) =
   )
 
   return (
-    <PostStyled like={isLiked}>
+    <PostStyled like={isLiked} data-testid='post-card-component'>
       <PostInfoContainer>
         <PostTitle
           onClick={() => {
@@ -40,6 +40,7 @@ const PostCard: React.FC<Props> = ({ post, likePost, deletePost, likedPosts }) =
       </PostInfoContainer>
       <PostButtonContainer>
         <Button
+          data-testid='post-like-btn'
           text='like'
           onClick={() => {
             setIsLiked(!isLiked)
@@ -49,6 +50,7 @@ const PostCard: React.FC<Props> = ({ post, likePost, deletePost, likedPosts }) =
           type='regular'
         />
         <Button
+          data-testid='post-delete-btn'
           text='delete'
           onClick={() => {
             deletePost(post.id)

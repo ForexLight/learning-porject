@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { PageIndicatorType } from '../Types'
+import { PageIndicatorType } from '../../Types'
 
 export const PaginationContainer = styled.nav``
 export const PagesController = styled.ul`

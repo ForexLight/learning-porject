@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import Calendar from './components/Calendar'
 import InformationField from './components/InformationField'
 import Button from '../shared/Button/Button'
@@ -7,15 +6,8 @@ import { getMonth } from '../../helpers/dateHelpers'
 import EditItemPopup from './components/EditItemPopup'
 import { scheduleState, updateScheduleItem } from '../../store/slices/scheduleSlice'
 import { useAppDispatch } from '../../hooks'
+import { CalendarContainer, CalendarTitleContainer } from './CalendarPage.style'
 
-const CalendarContainer = styled.section`
-  margin-bottom: 75px;
-`
-const CalendarTitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
 const CalendarPage: React.FC = () => {
   const dispatcher = useAppDispatch()
   const [time, setTime] = useState(new Date())

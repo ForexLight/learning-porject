@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { PostTypes, UserTypes } from './Types'
-import PostCard from './components/PostCard'
+import PostCard from './components/PostCard/PostCard'
 import usePagination from '../../hooks/usePagination'
 
 import { PlaceHolderContainer, PostContainer } from './PlaceHolderJSON.styles'
 
-import PaginationController from './components/PaginationController'
-import FilterController from './components/FilterController'
+import PaginationController from './components/PaginationController/PaginationController'
+import FilterController from './components/FilterController/FilterController'
 
 const PlaceHolderJSON: React.FC = () => {
   const [data, setData] = useState<PostTypes[] | []>([])
@@ -30,20 +31,19 @@ const PlaceHolderJSON: React.FC = () => {
       contentPerPage: 5,
       count: filterPosts().length,
     })
+  const loadData = async () => {
+    const postsData = await axios
+      .get('https://jsonplaceholder.typicode.com/posts/')
+      .then((res) => res.data)
+    setData(postsData)
+    const usersData = await axios
+      .get('https://jsonplaceholder.typicode.com/users')
+      .then((res) => res.data)
+    setUsers(usersData)
+  }
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts/')
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((e) => {
-        throw new Error(e)
-      })
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => res.json())
-      .then((res) => setUsers(res))
-      .catch((e) => {
-        throw new Error(e)
-      })
+    loadData()
   }, [])
 
   const deletePost = (id: string): void => {

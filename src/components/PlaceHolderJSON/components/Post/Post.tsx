@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { CommentTypes, PostTypes, UserTypes } from '../Types'
-import { mockedPostData, mockedUserData } from '../mokedData'
-import Loader from '../../shared/Loader/Loader'
+import axios from 'axios'
+import { CommentTypes, PostTypes, UserTypes } from '../../Types'
+import { mockedPostData, mockedUserData } from '../../mokedData'
+import Loader from '../../../shared/Loader/Loader'
 import {
   CommentBody,
   CommentItem,
@@ -24,31 +25,47 @@ const Post: React.FC = () => {
   const [userData, setUserData] = useState<UserTypes>(mockedUserData)
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-      .then((res) => res.json())
-      .then((res) => setPostData(res))
-    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-      .then((res) => res.json())
-      .then((res) => setPostComments(res))
-  }, [])
-  useEffect(() => {
+  const getData = async () => {
+    let isOk = false
     const waitingTime = 1000
-    fetch(`https://jsonplaceholder.typicode.com/users/${postData.userId}`)
-      .then((res) => res.json())
-      .then((res) => setUserData(res))
+    const postInfo = await axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .then((res) => res.data)
+      .catch((e) => {
+        isOk = false
+      })
+    setPostData(postInfo)
+    const comments = await axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+      .then((res) => res.data)
+      .catch((e) => {
+        isOk = false
+      })
+
+    setPostComments(comments)
+    const user = await axios
+      .get(`https://jsonplaceholder.typicode.com/users/${1}`)
+      .then((res) => setUserData(res.data))
       .then(() =>
         setTimeout(() => {
           setIsLoaded(true)
         }, waitingTime),
       )
-  }, [postData.userId])
+      .catch((e) => {
+        isOk = false
+      })
+    return isOk
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   const formattedImgUrl = userData.name ? userData.name.split(' ').join('+') : ''
   return (
     <>
       {isLoaded ? null : <Loader />}
-      <PostContainer>
+      <PostContainer data-testid='post-component'>
         <TopLinks
           onClick={() => {
             navigate(-1)
