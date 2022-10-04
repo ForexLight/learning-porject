@@ -1,37 +1,15 @@
 import React, { FunctionComponent } from 'react'
-import styled from 'styled-components'
 
 import Button from '../../shared/Button/Button'
 
 import { getDateFormatted } from '../../../helpers/dateHelpers'
 
-import { useAppSelector, useAppDispatch } from '../../../hooks'
-import { removeScheduleItem, scheduleState } from '../../../store/slices/scheduleSlice'
+import { useAppDispatch, useAppSelector } from '../../../hooks'
+import { removeScheduleItem } from '../../../store/slices/scheduleSlice'
+import { InformationFieldContainer, ScheduleItems } from './InformationField.styles'
+import { InformationFiledProps } from '../Types'
 
-const ScheduleItems = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  margin: 5px 0;
-  width: 100%;
-  border-radius: 20px;
-  background-color: #606060;
-`
-const InformationFieldContainer = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`
-interface OwnProps {
-  date: Date
-  editItem: (item: scheduleState) => void
-}
-
-type Props = OwnProps
-
-const InformationField: FunctionComponent<Props> = ({ date, editItem }) => {
+const InformationField: FunctionComponent<InformationFiledProps> = ({ date, editItem }) => {
   const dispatcher = useAppDispatch()
   const schedule = useAppSelector((state) => state.schedule)
   const compareDates = (date1: Date, date2: Date): boolean =>

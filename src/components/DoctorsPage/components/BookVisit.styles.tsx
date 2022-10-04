@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ContainerType } from './Types'
+import { ContainerType } from '../Types'
 
 export const BookVisitContainer = styled.div`
   color: black;

@@ -9,6 +9,8 @@ import { useAppDispatch } from '../../hooks'
 import { CalendarContainer, CalendarTitleContainer } from './CalendarPage.style'
 
 const CalendarPage: React.FC = () => {
+  const MONTH_AMOUNT = 12
+
   const dispatcher = useAppDispatch()
   const [time, setTime] = useState(new Date())
   const [chosenDay, setChosenDay] = useState(new Date())
@@ -23,7 +25,7 @@ const CalendarPage: React.FC = () => {
   const forwardMonth = (): void => {
     const funcTime = time
     funcTime.setDate(1)
-    if (time.getMonth() <= 11) {
+    if (time.getMonth() <= MONTH_AMOUNT - 1) {
       funcTime.setMonth(funcTime.getMonth() + 1)
     } else {
       funcTime.setFullYear(funcTime.getFullYear() + 1)
@@ -34,9 +36,9 @@ const CalendarPage: React.FC = () => {
   const backwardMonth = (): void => {
     const funcTime = time
     funcTime.setDate(1)
-    if (time.getMonth() === 12) {
+    if (time.getMonth() === MONTH_AMOUNT) {
       funcTime.setFullYear(funcTime.getFullYear() - 1)
-      funcTime.setMonth(10)
+      funcTime.setMonth(MONTH_AMOUNT - 2)
     } else {
       funcTime.setMonth(funcTime.getMonth() - 1)
     }

@@ -1,54 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import Input from '../../shared/Input/Input'
 import Button from '../../shared/Button/Button'
-import { scheduleState } from '../../../store/slices/scheduleSlice'
+import { PopupContent, PopupStyled } from './EditItemPopup.styles'
+import { EditItemPopupProps } from '../Types'
 
-const PopupStyled = styled.div<PopupStyledProps>`
-  display: ${(props) => (props.popupActive ? 'flex' : 'none')};
-  color: white;
-  position: absolute;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  height: calc(100% - 70px);
-  top: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.33);
-`
-const PopupContent = styled.div`
-  background-color: #ff0000;
-  width: 100%;
-  height: 80%;
-  border-radius: 40px 40px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  form {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-`
-type PopupStyledProps = {
-  popupActive: boolean
-}
-
-interface OwnProps {
-  popupActive: boolean
-  pushChanging: () => void
-  popupActiveItem: scheduleState
-  updateItem: (i: scheduleState) => void
-  setPopupActive: (i: boolean) => void
-}
-
-type Props = OwnProps
-
-const EditItemPopup: React.FC<Props> = ({
+const EditItemPopup: React.FC<EditItemPopupProps> = ({
   popupActive,
   popupActiveItem,
   setPopupActive,
@@ -57,14 +13,11 @@ const EditItemPopup: React.FC<Props> = ({
 }) => {
   const { id, info, date, place } = popupActiveItem
 
-  const popupExit = (e: React.MouseEvent<HTMLDivElement>): void => {
+  const popupExit = (): void => {
     setPopupActive(false)
   }
   return (
-    <PopupStyled
-      popupActive={popupActive}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => popupExit(e)}
-    >
+    <PopupStyled popupActive={popupActive} onClick={() => popupExit()}>
       <PopupContent onClick={(e) => e.stopPropagation()}>
         <form action=''>
           <h3>id : {id}</h3>

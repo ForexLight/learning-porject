@@ -1,48 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import {
+  CalendarContainer,
+  DatesContainer,
+  DayContainer,
+  DayContainerActive,
+  DayContainerInActive,
+  DayNames,
+} from './Calendar.styles'
+import { CalendarProps } from '../Types'
 
-const CalendarContainer = styled.div`
-  padding: 5px;
-`
-const DayNames = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-`
-const DayContainer = styled.div<DayContainerProps>`
-  background-color: white;
-  color: black;
-  height: 50px;
-  width: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-const DayContainerActive = styled(DayContainer)<DayContainerProps>`
-  background-color: red;
-`
+const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
+  const MONTH_AMOUNT = 12
+  const WEEKDAYS_AMOUNT = 7
 
-const DayContainerInActive = styled(DayContainer)<DayContainerProps>`
-  color: #3b3b3b;
-  background-color: #a4a4a4;
-`
-
-const DatesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-`
-type DayContainerProps = {
-  isActive?: boolean
-  isOtherMonth?: boolean
-}
-interface OwnProps {
-  time: Date
-  setActive: Dispatch<SetStateAction<Date>>
-  active: Date
-}
-
-type Props = OwnProps
-
-const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   const getArrayFromDates = () => {
     const arr = []
@@ -51,7 +21,7 @@ const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
     const prevMonthLastDay = new Date(time.getFullYear(), time.getMonth(), 0)
     if (String(time.getMonth()) === '0') {
       prevMonthLastDay.setFullYear(time.getFullYear() - 1)
-      prevMonthLastDay.setMonth(12)
+      prevMonthLastDay.setMonth(MONTH_AMOUNT)
       prevMonthLastDay.setDate(0)
     }
     time.setDate(0)
@@ -60,7 +30,11 @@ const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
       arr.push(new Date(time))
     } while (time.getDate() !== lastDay.getDate())
     if (String(arr[0].getDay()) !== '1') {
-      for (let i = arr[0].getDay() === 0 ? 6 : arr[0].getDay() - 1; i >= 1; i -= 1) {
+      for (
+        let i = arr[0].getDay() === 0 ? WEEKDAYS_AMOUNT - 1 : arr[0].getDay() - 1;
+        i >= 1;
+        i -= 1
+      ) {
         arr.unshift(new Date(prevMonthLastDay))
         prevMonthLastDay.setDate(prevMonthLastDay.getDate() - 1)
       }
@@ -69,7 +43,7 @@ const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
       String(arr[arr.length - 1].getDay()) !== '7' &&
       String(arr[arr.length - 1].getDay()) !== '0'
     ) {
-      for (let i = 7 - arr[arr.length - 1].getDay(); i >= 1; i -= 1) {
+      for (let i = WEEKDAYS_AMOUNT - arr[arr.length - 1].getDay(); i >= 1; i -= 1) {
         nextMonthFirstDay.setDate(nextMonthFirstDay.getDate() + 1)
         arr.push(new Date(nextMonthFirstDay))
       }
@@ -84,10 +58,7 @@ const Calendar: React.FC<Props> = ({ time, setActive, active }) => {
         if (i.getMonth() > time.getMonth() || i.getFullYear() > time.getFullYear()) {
           return true
         }
-        if (i.getMonth() < time.getMonth() || i.getFullYear() < time.getFullYear()) {
-          return true
-        }
-        return false
+        return i.getMonth() < time.getMonth() || i.getFullYear() < time.getFullYear()
       }
       if (checkMonth()) {
         return (
