@@ -1,78 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import SvgLoader from '../../helpers/SvgLoader'
+import { NavBarProps } from './Types'
+import NavBarStyled from './NavBar.styles'
 
-const NavBarStyled = styled.nav<StyledProps>`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  ul {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    li {
-      padding: 5px;
-      height: 70px;
-      width: 25%;
-    }
-    li:nth-child(${(props) => props.active}) {
-      background-color: red;
-    }
-    li > a {
-      margin: 5px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      align-items: center;
-      color: black;
-      text-decoration: none;
-      svg {
-        width: 30px;
-      }
-    }
-  }
-  @media (min-width: 540px) {
-    position: relative;
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    background-color: gray;
-    ul {
-      align-self: flex-end;
-      justify-self: flex-end;
-      width: 60%;
-    }
-    ul > li > a {
-      padding: 0;
-      margin: 0;
-    }
-    @media (min-width: 766px) {
-      ul {
-        width: 40%;
-      }
-    }
-  }
-`
-type StyledProps = {
-  active: number
-}
-interface OwnProps {
-  dark?: boolean
-}
-
-type Props = OwnProps
-
-const NavBar: React.FC<Props> = () => {
+const NavBar: React.FC<NavBarProps> = () => {
   const [Active, setActive] = useState<number>(1)
   return (
     <NavBarStyled active={Active}>

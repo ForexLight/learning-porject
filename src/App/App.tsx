@@ -11,7 +11,7 @@ import Login from '../components/Login/Login'
 import Main from '../components/Main/Main'
 import NavBar from '../components/NavBar/NavBar'
 import MedicalTests from '../components/MedicalTests/MedicalTests'
-import Doctors from '../components/Dotors/Doctors'
+import Doctors from '../components/Doctors/Doctors'
 import Calendar from '../components/Calendar/CalendarPage'
 import DoctorPage from '../components/DoctorsPage/DoctorPage'
 import PlaceHolderJSON from '../components/PlaceHolderJSON/PlaceHolderJSON'
@@ -21,8 +21,6 @@ const AppWrapper = styled.main`
   max-width: 100vw;
   font-size: 1.5em;
   color: red;
-  @media (min-width: 766px) {
-  }
 `
 
 const App: React.FC = () => {

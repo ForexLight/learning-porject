@@ -3,17 +3,17 @@ import { addScheduleItem } from '../../../store/slices/scheduleSlice'
 
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 
-import { getDateFormatted, getDayFormatted, dateHelpers } from '../../../helpers/dateHelpers'
+import { dateHelpers, getDateFormatted } from '../../../helpers/dateHelpers'
 import getHours, { getStringTime } from '../../../helpers/getHours'
 import Button from '../../shared/Button/Button'
-import { ChooseDayType } from './Types'
+import { ChooseDayType } from '../Types'
 import {
   BookVisitContainer,
   ChooseDayContainer,
   ChooseTimeContainer,
   DayContainer,
   TimeContainer,
-} from './Styles'
+} from './BookVisit.styles'
 
 const BookVisit: React.FC = () => {
   const dispatcher = useAppDispatch()
@@ -82,7 +82,7 @@ const BookVisit: React.FC = () => {
       <ChooseDayContainer>{dayNodes}</ChooseDayContainer>
       <h3>Choose time</h3>
       <ChooseTimeContainer>{timeNodes}</ChooseTimeContainer>
-      <Button onClick={(e) => dateFormatter()} size='100%' type='regular' text='book visit' />
+      <Button onClick={() => dateFormatter()} size='100%' type='regular' text='book visit' />
     </BookVisitContainer>
   )
 }

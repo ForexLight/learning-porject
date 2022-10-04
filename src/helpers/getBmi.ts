@@ -1,4 +1,4 @@
-import { PhysiqueType } from '../components/Main/Main.type'
+import { PhysiqueType } from '../components/Main/Types'
 
 const getBMI = ({ weight, height }: PhysiqueType): number =>
   Math.trunc(weight / (height / 100) ** 2)
