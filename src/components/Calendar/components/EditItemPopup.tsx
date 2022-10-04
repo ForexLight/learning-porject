@@ -13,14 +13,11 @@ const EditItemPopup: React.FC<EditItemPopupProps> = ({
 }) => {
   const { id, info, date, place } = popupActiveItem
 
-  const popupExit = (e: React.MouseEvent<HTMLDivElement>): void => {
+  const popupExit = (): void => {
     setPopupActive(false)
   }
   return (
-    <PopupStyled
-      popupActive={popupActive}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => popupExit(e)}
-    >
+    <PopupStyled popupActive={popupActive} onClick={() => popupExit()}>
       <PopupContent onClick={(e) => e.stopPropagation()}>
         <form action=''>
           <h3>id : {id}</h3>

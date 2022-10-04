@@ -11,11 +11,10 @@ type LoginDataTypes = {
   email: string
   pass: string
 }
-interface OwnProps {
-  setVisibleNav: any
-}
 
-type Props = OwnProps
+type OwnProps = {
+  setVisibleNav: (arg0: boolean) => void
+}
 
 const LoginWrapper = styled.section`
   display: flex;
@@ -51,7 +50,8 @@ const LoginWrapper = styled.section`
   }
 `
 
-const Login: React.FC<Props> = ({ setVisibleNav }) => {
+const Login: React.FC<OwnProps> = ({ setVisibleNav }) => {
+  const WAIT_TIME = 1500
   const [data, setData] = useState<LoginDataTypes>({ email: '', pass: '' })
   const [visibleError, setVisibleError] = useState<boolean>(false)
   const [visibleSuccess, setVisibleSuccess] = useState<boolean>(false)
@@ -69,7 +69,7 @@ const Login: React.FC<Props> = ({ setVisibleNav }) => {
       setVisibleError(true)
       setTimeout(() => {
         setVisibleError(false)
-      }, 1500)
+      }, WAIT_TIME)
       console.warn('error in date')
       return
     }
@@ -79,7 +79,7 @@ const Login: React.FC<Props> = ({ setVisibleNav }) => {
       setVisibleError(false)
       navigate('/main', { replace: true })
       setVisibleNav(true)
-    }, 1000)
+    }, WAIT_TIME)
   }
   return (
     <LoginWrapper>

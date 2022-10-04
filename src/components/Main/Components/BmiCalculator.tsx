@@ -5,18 +5,21 @@ import getBMI from '../../../helpers/getBmi'
 import { BmiCalculatorContainer, BmiStatus, BodyStatus } from './BmiCalculator.styles'
 
 const BmiCalculator: React.FC = () => {
+  const LOW_BMI_INDEX = 25
+  const TOP_BMI_INDEX = 30
+
   const [physique] = useState<PhysiqueType>({ height: 183, weight: 68 })
 
   const getBmi = () => {
     const bmi = getBMI(physique)
-    if (bmi < 25) {
+    if (bmi < LOW_BMI_INDEX) {
       return (
         <BmiStatus color='blue'>
           <span>underweight</span>
         </BmiStatus>
       )
     }
-    if (bmi > 25 && bmi < 30) {
+    if (bmi > LOW_BMI_INDEX && bmi < TOP_BMI_INDEX) {
       return (
         <BmiStatus color='green'>
           <span>normal weight</span>

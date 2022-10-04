@@ -31,19 +31,19 @@ const Post: React.FC = () => {
     const postInfo = await axios
       .get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then((res) => res.data)
-      .catch((e) => {
+      .catch(() => {
         isOk = false
       })
     setPostData(postInfo)
     const comments = await axios
       .get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
       .then((res) => res.data)
-      .catch((e) => {
+      .catch(() => {
         isOk = false
       })
 
     setPostComments(comments)
-    const user = await axios
+    await axios
       .get(`https://jsonplaceholder.typicode.com/users/${1}`)
       .then((res) => setUserData(res.data))
       .then(() =>
@@ -51,7 +51,7 @@ const Post: React.FC = () => {
           setIsLoaded(true)
         }, waitingTime),
       )
-      .catch((e) => {
+      .catch(() => {
         isOk = false
       })
     return isOk

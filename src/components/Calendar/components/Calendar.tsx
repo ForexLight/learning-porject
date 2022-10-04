@@ -10,6 +10,9 @@ import {
 import { CalendarProps } from '../Types'
 
 const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
+  const MONTH_AMOUNT = 12
+  const WEEKDAYS_AMOUNT = 7
+
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   const getArrayFromDates = () => {
     const arr = []
@@ -18,7 +21,7 @@ const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
     const prevMonthLastDay = new Date(time.getFullYear(), time.getMonth(), 0)
     if (String(time.getMonth()) === '0') {
       prevMonthLastDay.setFullYear(time.getFullYear() - 1)
-      prevMonthLastDay.setMonth(12)
+      prevMonthLastDay.setMonth(MONTH_AMOUNT)
       prevMonthLastDay.setDate(0)
     }
     time.setDate(0)
@@ -27,7 +30,11 @@ const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
       arr.push(new Date(time))
     } while (time.getDate() !== lastDay.getDate())
     if (String(arr[0].getDay()) !== '1') {
-      for (let i = arr[0].getDay() === 0 ? 6 : arr[0].getDay() - 1; i >= 1; i -= 1) {
+      for (
+        let i = arr[0].getDay() === 0 ? WEEKDAYS_AMOUNT - 1 : arr[0].getDay() - 1;
+        i >= 1;
+        i -= 1
+      ) {
         arr.unshift(new Date(prevMonthLastDay))
         prevMonthLastDay.setDate(prevMonthLastDay.getDate() - 1)
       }
@@ -36,7 +43,7 @@ const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
       String(arr[arr.length - 1].getDay()) !== '7' &&
       String(arr[arr.length - 1].getDay()) !== '0'
     ) {
-      for (let i = 7 - arr[arr.length - 1].getDay(); i >= 1; i -= 1) {
+      for (let i = WEEKDAYS_AMOUNT - arr[arr.length - 1].getDay(); i >= 1; i -= 1) {
         nextMonthFirstDay.setDate(nextMonthFirstDay.getDate() + 1)
         arr.push(new Date(nextMonthFirstDay))
       }
@@ -51,10 +58,7 @@ const Calendar: React.FC<CalendarProps> = ({ time, setActive, active }) => {
         if (i.getMonth() > time.getMonth() || i.getFullYear() > time.getFullYear()) {
           return true
         }
-        if (i.getMonth() < time.getMonth() || i.getFullYear() < time.getFullYear()) {
-          return true
-        }
-        return false
+        return i.getMonth() < time.getMonth() || i.getFullYear() < time.getFullYear()
       }
       if (checkMonth()) {
         return (
