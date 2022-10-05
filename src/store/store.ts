@@ -3,6 +3,7 @@ import notificationReducer from './slices/notificationSlice'
 import scheduleReducer from './slices/scheduleSlice'
 import certificationReducer from './slices/certificatSlice'
 import doctorsReducer from './slices/doctorsSlice'
+import userDataReducer from './slices/userDataSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     schedule: scheduleReducer,
     certification: certificationReducer,
     doctorReducer: doctorsReducer,
+    userData: userDataReducer,
   },
 })
 
