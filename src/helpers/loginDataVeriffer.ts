@@ -1,8 +1,8 @@
 type LoginDataTypes = {
   email: string
-  pass: string
+  password: string
 }
 
-const loginDataVerify = (data: LoginDataTypes): boolean => !!(data.email && data.pass)
+const loginDataVerify = (data: LoginDataTypes): boolean => !!(data.email && data.password)
 
 export default loginDataVerify
