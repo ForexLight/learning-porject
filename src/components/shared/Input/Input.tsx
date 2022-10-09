@@ -6,11 +6,9 @@ const InputContainer = styled.div<StyledProps>`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 5px;
 
   input {
     width: 100%;
-    padding: 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid ${(props) => (props.isError ? '#f10000' : '#000000')};
@@ -26,16 +24,24 @@ interface OwnProps {
   label: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   isError: boolean
+  placeholder: string
 
   [x: string]: any
 }
 
 type Props = OwnProps
 
-const Input: React.FC<Props> = ({ label, onChange, isError, ...props }) => (
+const Input: React.FC<Props> = ({ label, onChange, isError, placeholder, ...props }) => (
   <InputContainer isError={isError}>
     <label htmlFor={label}>{label}</label>
-    <input id={label} type='text' required onChange={onChange} {...props} />
+    <input
+      id={label}
+      type='text'
+      required
+      onChange={onChange}
+      placeholder={placeholder}
+      {...props}
+    />
   </InputContainer>
 )
 

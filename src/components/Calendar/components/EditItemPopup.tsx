@@ -22,6 +22,7 @@ const EditItemPopup: React.FC<EditItemPopupProps> = ({
         <form action=''>
           <h3>id : {id}</h3>
           <Input
+            placeholder=''
             isError={false}
             label='date'
             onChange={(e) =>
@@ -33,6 +34,7 @@ const EditItemPopup: React.FC<EditItemPopupProps> = ({
             value={date}
           />
           <Input
+            placeholder=''
             isError={false}
             label='info'
             onChange={(e) =>
@@ -44,6 +46,7 @@ const EditItemPopup: React.FC<EditItemPopupProps> = ({
             value={info}
           />
           <Input
+            placeholder=''
             isError={false}
             label='place'
             onChange={(e) =>

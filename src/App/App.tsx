@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import { Provider } from 'react-redux'
 import { store } from '../store/store'
 
-import Login from '../components/Login/Login'
+import Login from '../components/Login and Registration/Login'
 import Main from '../components/Main/Main'
 import NavBar from '../components/NavBar/NavBar'
 import MedicalTests from '../components/MedicalTests/MedicalTests'
@@ -16,6 +16,7 @@ import Calendar from '../components/Calendar/CalendarPage'
 import DoctorPage from '../components/DoctorsPage/DoctorPage'
 import PlaceHolderJSON from '../components/PlaceHolderJSON/PlaceHolderJSON'
 import Post from '../components/PlaceHolderJSON/components/Post/Post'
+import Registration from '../components/Login and Registration/Registration'
 
 const AppWrapper = styled.main`
   max-width: 100vw;
@@ -36,6 +37,7 @@ const App: React.FC = () => {
               element={isAuth ? <Navigate replace to='main' /> : <Navigate replace to='login' />}
             />
             <Route path='login' element={<Login setVisibleNav={setIsAuth} />} />
+            <Route path='registration' element={<Registration setVisibleNav={setIsAuth} />} />
             <Route path='main' element={<Main />} />
             <Route path='calendar' element={<Calendar />} />
             <Route path='doctors' element={<Doctors />} />

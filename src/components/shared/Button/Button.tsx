@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import SvgLoader from '../../../helpers/SvgLoader'
 
 interface ComponentProps {
-  text: string
+  text: string | JSX.Element
   onClick: (e?: any) => void
   type: string
   size: string
+
   [x: string]: any
 }
 
@@ -40,13 +41,24 @@ const BackStyledButton = styled(StyledButton)`
   align-items: center;
   justify-content: space-between;
   background-color: white;
+
   svg {
     transform: rotate(90deg);
     width: 14px;
   }
 `
 
-const SecondaryStyledButton = styled(StyledButton)``
+const SecondaryStyledButton = styled(StyledButton)`
+  background-color: #fff;
+`
+
+const GoogleStyledButton = styled(StyledButton)`
+  background-color: #ff0000;
+`
+
+const FacebookStyledButton = styled(StyledButton)`
+  background-color: #003cff;
+`
 
 const InfoStyledButton = styled(StyledButton)``
 
@@ -73,6 +85,18 @@ const Button: React.FC<Props> = ({ text, onClick, type, size, ...props }) => {
         <InfoStyledButton onClick={onClick} size={size} {...props}>
           {text}
         </InfoStyledButton>
+      )
+    case 'google':
+      return (
+        <GoogleStyledButton onClick={onClick} size={size} {...props}>
+          {text}
+        </GoogleStyledButton>
+      )
+    case 'facebook':
+      return (
+        <FacebookStyledButton onClick={onClick} size={size} {...props}>
+          {text}
+        </FacebookStyledButton>
       )
     case 'success':
       return (

@@ -16,7 +16,7 @@ const Main: React.FC = () => {
     setNotifications(newData)
   }
   return (
-    <StyledMain>
+    <StyledMain data-testid='main-component'>
       <Notification notifications={notifications} deleteNotification={deleteNotification} />
       <Greeting />
       <AdditionalContainer>
