@@ -74,7 +74,7 @@ const Login: React.FC<OwnProps> = ({ setVisibleNav }) => {
         <span>
           If u already have an account u can log in
           <b>
-            <a href='/register'> here</a>
+            <a href='/login'> here</a>
           </b>
         </span>
       </LoginForm>

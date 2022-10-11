@@ -15,7 +15,7 @@ export type LoginDataTypes = {
 }
 
 type OwnProps = {
-  setVisibleNav: (arg0: boolean) => void
+  setVisibleNav: (arg: boolean) => void
 }
 
 const Login: React.FC<OwnProps> = ({ setVisibleNav }) => {
@@ -72,7 +72,7 @@ const Login: React.FC<OwnProps> = ({ setVisibleNav }) => {
         <span>
           If u don&rsquo;t have an account u can create it
           <b>
-            <a href='/login'> here</a>
+            <a href='/registration'> here</a>
           </b>
         </span>
       </LoginForm>
