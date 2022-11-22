@@ -1,15 +1,19 @@
 const greetingByDayTime = (date: Date): string => {
+  const morningStart = 6
+  const dayStart = 12
+  const eveningStart = 18
+  const nightStart = 24
   const hours = date.getHours()
-  if (hours >= 0 && hours < 6) {
+  if (hours >= 0 && hours < morningStart) {
     return 'night'
   }
-  if (hours >= 6 && hours < 12) {
+  if (hours >= morningStart && hours < dayStart) {
     return 'morning'
   }
-  if (hours >= 12 && hours < 18) {
+  if (hours >= dayStart && hours < eveningStart) {
     return 'day'
   }
-  if (hours >= 18 && hours <= 24) {
+  if (hours >= eveningStart && hours <= nightStart) {
     return 'evening'
   }
   return 'error'
