@@ -6,7 +6,6 @@ describe('PAGINATION CONTROLLER COMPONENT TEST', () => {
   const mockSetPageCallback = jest.fn()
   const mockNextPageCallback = jest.fn()
   const mockPrevPageCallback = jest.fn()
-  beforeEach(() => {})
   test('expect to render', async () => {
     render(
       <PaginationController

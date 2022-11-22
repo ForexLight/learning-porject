@@ -9,8 +9,9 @@ export const getDayFormatted = (i: Date) =>
   new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(i)
 export const getDateFormatted = (i: Date): string => `${i.getDate()} ${getMonth(i)}`
 export const dateHelpers = (time: Date) => {
+  const iterationTimes = 9
   const days: Date[] = []
-  for (let i = 0; i <= 9; i += 1) {
+  for (let i = 0; i <= iterationTimes; i += 1) {
     const newTime = new Date(time)
     newTime.setDate(time.getDate() + i)
     days.push(newTime)
